@@ -7,7 +7,7 @@
 ![GitHub forks](https://img.shields.io/github/forks/bharathk113/bharathk113.github.io)
 [![Maintenance](https://img.shields.io/badge/maintained-yes-green.svg)](https://github.com/bharathk113/bharathk113.github.io/commits/master)
 [![Website shields.io](https://img.shields.io/badge/website-up-yellow)](http://bharathk113.github.io/)
-[![Ask Me Anything !](https://img.shields.io/badge/ask%20me-linkedin-1abc9c.svg)](https://www.linkedin.com/in/bharathk113/)
+[![Ask Me Anything !](https://img.shields.io/badge/ask%20me-linkedin-1abc9c.svg)](https://www.linkedin.com/in/bharath-reddy-k/)
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 ### Website Preview
@@ -40,6 +40,8 @@
 ✔️ Projects \
 ✔️ Skills \
 ✔️ Education\
+✔️ Publications\
+✔️ Achievements\
 ✔️ Contact Info\
 ✔️ Resume
 
