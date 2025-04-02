@@ -75,6 +75,7 @@
                         const authorsElem = pub.querySelector('.gsc_a_t div');
                         const journalElem = pub.querySelector('.gsc_a_t div:nth-child(2)');
                         const yearElem = pub.querySelector('.gsc_a_y span');
+                        const citationElem = pub.querySelector('.gsc_a_c a');
                         
                         if (titleElem) {
                             const title = titleElem.innerText;
@@ -82,10 +83,14 @@
                             const authors = authorsElem ? authorsElem.innerText : 'Unknown authors';
                             const journal = journalElem ? journalElem.innerText : 'Unknown journal';
                             const year = yearElem ? yearElem.innerText : 'Unknown year';
+                            const citations = citationElem ? citationElem.innerText : 'No citations';
+                            const citationLink = citationElem ? 'https://scholar.google.com' + citationElem.getAttribute('href') : '#';
                             
-                            publicationsList += `<li><strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
+                            publicationsList += `<li>
+                                <strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
                                 <em>${authors}</em><br>
-                                <span>${journal}, ${year}</span>
+                                <span><strong>${journal}</strong>, ${year}</span><br>
+                                <span>Citations: <a href="${citationLink}" target="_blank">${citations}</a></span>
                             </li>`;
                             index++;
                         }
@@ -973,8 +978,10 @@
         </div>
       </div>
     </section>
+
+    <!-- Eight Section: Publications -->
    <section id="publications" class="section scrollspy">
-        <h2>Publications</h2>
+        <h3 class="page-title white-text teal">Publications</h3>
         <ul id="publications-list">
             <li id="loading">Loading publications...</li>
         </ul>
