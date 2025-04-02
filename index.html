@@ -33,13 +33,6 @@
 
     gtag('config', 'UA-197683058-1');
   </script>
-  <style>
-        #loading {
-            font-style: italic;
-            color: gray;
-            font-size: 18px;
-        }
-    </style>
     <script src="assets/vendor/typed.js/typed.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -89,7 +82,7 @@
                                 year = journalParts[journalParts.length - 1];
                             }
                             const citations = citationElem ? citationElem.innerText : 'No citations';
-                            const citationLink = citationElem ? 'https://scholar.google.com' + citationElem.getAttribute('href') : '#';
+                            const citationLink = citationElem ? citationElem.getAttribute('href') : '#';
                             
                             publicationsList += `<li>
                                 <strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
@@ -987,9 +980,11 @@
     <!-- Eight Section: Publications -->
    <section id="publications" class="section scrollspy">
         <h3 class="page-title white-text teal">Publications</h3>
+     <div class="container flow-text">
         <ul id="publications-list">
             <li id="loading">Loading publications...</li>
         </ul>
+     </div>
     </section>
     
     <!-- Eight Section: Publications -->
