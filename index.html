@@ -33,8 +33,15 @@
 
     gtag('config', 'UA-197683058-1');
   </script>
-      <script>
+  <style>
+        #loading {
+            font-style: italic;
+            color: gray;
+        }
+    </style>
+    <script>
         async function fetchPublications() {
+            document.getElementById('publications').innerHTML = '<li id="loading">Loading publications...</li>';
             const proxyUrl = 'https://api.allorigins.win/get?url=';
             const scholarUrl = encodeURIComponent('https://scholar.google.com/citations?user=L9uJncUAAAAJ&hl=en');
             
@@ -45,19 +52,36 @@
                 if (data && data.contents) {
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(data.contents, 'text/html');
-                    const publications = doc.querySelectorAll('.gsc_a_t a');
+                    const publications = doc.querySelectorAll('.gsc_a_tr');
                     
                     let publicationsList = '';
+                    let index = 1;
                     publications.forEach(pub => {
-                        const title = pub.innerText;
-                        const link = 'https://scholar.google.com' + pub.getAttribute('href');
-                        publicationsList += `<li><a href="${link}" target="_blank">${title}</a></li>`;
+                        const titleElem = pub.querySelector('.gsc_a_t a');
+                        const authorsElem = pub.querySelector('.gsc_a_t div');
+                        const journalElem = pub.querySelector('.gsc_a_t div:nth-child(2)');
+                        const yearElem = pub.querySelector('.gsc_a_y span');
+                        
+                        if (titleElem) {
+                            const title = titleElem.innerText;
+                            const link = 'https://scholar.google.com' + titleElem.getAttribute('href');
+                            const authors = authorsElem ? authorsElem.innerText : 'Unknown authors';
+                            const journal = journalElem ? journalElem.innerText : 'Unknown journal';
+                            const year = yearElem ? yearElem.innerText : 'Unknown year';
+                            
+                            publicationsList += `<li><strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
+                                <em>${authors}</em><br>
+                                <span>${journal}, ${year}</span>
+                            </li>`;
+                            index++;
+                        }
                     });
                     
-                    document.getElementById('publicationlist').innerHTML = publicationsList;
+                    document.getElementById('publications').innerHTML = publicationsList || '<li>No publications found.</li>';
                 }
             } catch (error) {
                 console.error('Error fetching publications:', error);
+                document.getElementById('publications').innerHTML = '<li>Error loading publications.</li>';
             }
         }
         
@@ -952,7 +976,7 @@
     <section id="publicationsnew" class="section scrollspy">
       <h3 class="page-title white-text teal">Publications</h3>
       <ul id="publicationlist">
-        <li>Loading publications...</li>
+        <li id="loading">Loading publications...</li>
       </ul>
     </section>
     
