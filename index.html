@@ -33,6 +33,36 @@
 
     gtag('config', 'UA-197683058-1');
   </script>
+      <script>
+        async function fetchPublications() {
+            const proxyUrl = 'https://api.allorigins.win/get?url=';
+            const scholarUrl = encodeURIComponent('https://scholar.google.com/citations?user=L9uJncUAAAAJ&hl=en');
+            
+            try {
+                const response = await fetch(proxyUrl + scholarUrl);
+                const data = await response.json();
+                
+                if (data && data.contents) {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data.contents, 'text/html');
+                    const publications = doc.querySelectorAll('.gsc_a_t a');
+                    
+                    let publicationsList = '';
+                    publications.forEach(pub => {
+                        const title = pub.innerText;
+                        const link = 'https://scholar.google.com' + pub.getAttribute('href');
+                        publicationsList += `<li><a href="${link}" target="_blank">${title}</a></li>`;
+                    });
+                    
+                    document.getElementById('publicationlist').innerHTML = publicationsList;
+                }
+            } catch (error) {
+                console.error('Error fetching publications:', error);
+            }
+        }
+        
+        window.onload = fetchPublications;
+    </script>
 
   <!-- Open Graph-->
   <meta property="og:locale" content="en_US" />
@@ -919,6 +949,13 @@
         </div>
       </div>
     </section>
+    <section id="publicationsnew" class="section scrollspy">
+      <h3 class="page-title white-text teal">Publications</h3>
+      <ul id="publicationlist">
+        <li>Loading publications...</li>
+      </ul>
+    </section>
+    
     <!-- Eight Section: Publications -->
     <section id="publications" class="section scrollspy">
       <h3 class="page-title white-text teal">Technical Reports and Publications</h3>
