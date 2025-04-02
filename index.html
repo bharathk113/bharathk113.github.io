@@ -37,11 +37,25 @@
         #loading {
             font-style: italic;
             color: gray;
+            font-size: 18px;
         }
     </style>
+    <script src="assets/vendor/typed.js/typed.min.js"></script>
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (window.loadingTypedInstance) {
+                window.loadingTypedInstance.destroy();
+            }
+            window.loadingTypedInstance = new Typed('#loading', {
+                strings: ["Fetching latest research...", "Retrieving publications...", "Loading articles..."],
+                loop: true,
+                typeSpeed: 80,
+                backSpeed: 40
+            });
+        });
+
         async function fetchPublications() {
-            document.getElementById('publications').innerHTML = '<li id="loading">Loading publications...</li>';
+            document.getElementById('publications-list').innerHTML = '<li id="loading">Loading publications...</li>';
             const proxyUrl = 'https://api.allorigins.win/get?url=';
             const scholarUrl = encodeURIComponent('https://scholar.google.com/citations?user=L9uJncUAAAAJ&hl=en');
             
@@ -77,11 +91,11 @@
                         }
                     });
                     
-                    document.getElementById('publicationslist').innerHTML = publicationsList || '<li>No publications found.</li>';
+                    document.getElementById('publications-list').innerHTML = publicationsList || '<li>No publications found.</li>';
                 }
             } catch (error) {
                 console.error('Error fetching publications:', error);
-                document.getElementById('publications').innerHTML = '<li>Error loading publications.</li>';
+                document.getElementById('publications-list').innerHTML = '<li>Error loading publications.</li>';
             }
         }
         
@@ -959,15 +973,15 @@
         </div>
       </div>
     </section>
-    <section id="publicationsnew" class="section scrollspy">
-      <h3 class="page-title white-text teal">Publications</h3>
-      <ul id="publicationlist">
-        <li id="loading">Loading publications...</li>
-      </ul>
+   <section id="publications" class="section scrollspy">
+        <h2>Publications</h2>
+        <ul id="publications-list">
+            <li id="loading">Loading publications...</li>
+        </ul>
     </section>
     
     <!-- Eight Section: Publications -->
-    <section id="publications" class="section scrollspy">
+<!--     <section id="publications" class="section scrollspy">
       <h3 class="page-title white-text teal">Technical Reports and Publications</h3>
       <div class="container flow-text">
         <li>
@@ -1020,7 +1034,7 @@
           2018
           Anurag Mishra, Bharath Reddy Kadapala, Aloshree Choudhury, et. al.
           International Congress on Cartography(INCA-38), 2018.
-        </li>
+        </li> -->
         <!-- <p>
           Looking for an opportunity to work in a challenging position combining my skills in Software Engineering, which provides professional development, interesting experiences and personal growth.
         </p> -->
@@ -1162,6 +1176,7 @@
       backSpeed: 40
     });
   </script>
+  
 
 
   <!-- jQuery-->
