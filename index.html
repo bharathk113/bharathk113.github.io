@@ -33,6 +33,77 @@
 
     gtag('config', 'UA-197683058-1');
   </script>
+    <script src="assets/vendor/typed.js/typed.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (window.loadingTypedInstance) {
+                window.loadingTypedInstance.destroy();
+            }
+            window.loadingTypedInstance = new Typed('#loading', {
+                strings: ["Fetching latest research...", "Retrieving publications...", "Loading articles..."],
+                loop: true,
+                typeSpeed: 80,
+                backSpeed: 40
+            });
+        });
+
+        async function fetchPublications() {
+            document.getElementById('publications-list').innerHTML = '<li id="loading">Loading publications...</li>';
+            const proxyUrl = 'https://api.allorigins.win/get?url=';
+            const scholarUrl = encodeURIComponent('https://scholar.google.com/citations?user=L9uJncUAAAAJ&hl=en');
+            
+            try {
+                const response = await fetch(proxyUrl + scholarUrl);
+                const data = await response.json();
+                
+                if (data && data.contents) {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(data.contents, 'text/html');
+                    const publications = doc.querySelectorAll('.gsc_a_tr');
+                    
+                    let publicationsList = '';
+                    let index = 1;
+                    publications.forEach(pub => {
+                        const titleElem = pub.querySelector('.gsc_a_t a');
+                        const authorsElem = pub.querySelector('.gsc_a_t div.gs_gray');
+                        const journalElem = pub.querySelector('.gsc_a_t div.gs_gray:nth-of-type(2)');
+                        const yearElem = pub.querySelector('.gsc_a_y span');
+                        const citationElem = pub.querySelector('.gsc_a_c a');
+                        
+                        if (titleElem) {
+                            const title = titleElem.innerText;
+                            const link = 'https://scholar.google.com' + titleElem.getAttribute('href');
+                            const authors = authorsElem ? authorsElem.innerText.split(', ').join(', ') : 'Unknown authors';
+                            let journal = 'Unknown journal';
+                            let year = 'Unknown year';
+                            if (journalElem && journalElem.innerText.includes(',')) {
+                                let journalParts = journalElem.innerText.split(', ');
+                                journal = journalParts.slice(0, -1).join(', ');
+                                year = journalParts[journalParts.length - 1];
+                            }
+                            const citations = citationElem ? citationElem.innerText : 'No citations';
+                            const citationLink = citationElem ? citationElem.getAttribute('href') : '#';
+                            
+                            publicationsList += `<li>
+                                <strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
+                                <em>${authors}</em><br>
+                                <span><strong>${journal}</strong>, ${year}</span><br>
+                                <span>Citations: <a href="${citationLink}" target="_blank">${citations}</a></span>
+                            </li>`;
+                            index++;
+                        }
+                    });
+                    
+                    document.getElementById('publications-list').innerHTML = publicationsList || '<li>No publications found.</li>';
+                }
+            } catch (error) {
+                console.error('Error fetching publications:', error);
+                document.getElementById('publications-list').innerHTML = '<li>Error loading publications.</li>';
+            }
+        }
+        
+        window.onload = fetchPublications;
+    </script>
 
   <!-- Open Graph-->
   <meta property="og:locale" content="en_US" />
@@ -282,6 +353,14 @@
         <!-- <div class="row">
           <div class="col my-2"> -->
             <model-viewer src="/assets/3dobjs/landscape-1.gltf" ar ar-scale= ar-modes="webxr scene-viewer quick-look" environment-image="neutral" auto-rotate camera-controls></model-viewer>
+<!--         <model-viewer src="/assets/3dobjs/landscape-1.gltf" 
+            ar ar-scale 
+            ar-modes="webxr scene-viewer quick-look" 
+            environment-image="neutral" 
+            auto-rotate 
+            camera-controls 
+            style="width: 100vw; height: 100vh; max-width: 100%; display: block; overflow: hidden; touch-action: manipulation;">
+        </model-viewer> -->
           <!-- </div> -->
 
         </div>
@@ -294,25 +373,11 @@
       <h3 class="page-title white-text teal">About</h3>
       <div class="container flow-text">
         <p>
-          I am a Remote Sensing Data Engineer at National Remote Sensing Centre, Indian Space Research Organization.
+          I am a Remote Sensing Data Engineer at the National Remote Sensing Centre, Indian Space Research Organization.
         </p>
         <p>
           Skilled in Digital Image Processing, Data analytics, ML algorithms, open source ML, DP and DIP libraries, ESRI/Hexagonal/PCI Products, Statistical Data Analysis and Remote Sensing.
         </p>
-        <!-- <p>
-          Looking for an opportunity to work in a challenging position combining my skills in Software Engineering, which provides professional development, interesting experiences and personal growth.
-        </p> -->
-        <!-- <p>
-          Another Paragraph
-        </p>  -->
-        <!-- <p>
-        <strong>Current Focus</strong>:&nbsp;<a aria-label="Navigate to the Inclusive Design Patterns homepage"
-          href="https://www.smashingmagazine.com/inclusive-design-patterns/">Accessibility</a>&nbsp;//&nbsp;<a
-          aria-label="Navigate to the Full Stack React homepage"
-          href="https://www.fullstackreact.com/">React</a>&nbsp;//&nbsp;<a
-          aria-label='Navigate to the article "Scalable CSS"'
-          href="https://mrmrs.github.io/writing/2016/03/24/scalable-css/">Design Systems</a>
-        </p> -->
       </div>
     </section>
 
@@ -863,6 +928,32 @@
             <div class="card">
               <div class="card-content">
                 <p>
+                  <span class="card-title"><a href="https://bits-pilani.ac.in/" target="_blank" class="teal-text hoverline">Birla Institute of Technology And Science, Pilani (BITS Pilani)</a></span>
+                </p>
+                <p class="brown-text">Hyderabad, India</p>
+                <p>
+                  <b>Degree: </b>Master of Technology in Data Science & Engineering
+<!--                   <br>
+                  <b>CGPA: </b>3.13/4.33 -->
+                </p>
+
+                <ul>
+                  <p>
+                    <b>Relevant Courseworks:</b>
+                  <ul>
+                    <li>Machine Learning</li>
+                    <li>Natural Language Processing</li>
+                    <li>Deep Learning</li>
+                    <li>Big Data Systems</li>
+                  </ul>
+                  </p>
+
+                </ul>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-content">
+                <p>
                   <span class="card-title"><a href="https://www.iist.ac.in/" target="_blank" class="teal-text hoverline">Indian Institute of Space Science and Technology</a></span>
                 </p>
                 <p class="brown-text">Trivandrum, Kerala, India</p>
@@ -887,40 +978,24 @@
               </div>
             </div>
 
-            <!-- <div class="card">
-              <div class="card-content">
-                <p>
-                  <span class="card-title"><a href="https://ahduni.edu.in/academics/schools-centres/school-of-engineering-and-applied-science/" target="_blank" class="teal-text hoverline">School of Engineering and Applied Science, Ahmedabad
-                      University</a></span>
-                </p>
-                <p class="brown-text">Ahmedabad, India</p>
-                <p>
-                  <b>Degree: </b>Bachelor of Technology in Information and Communication Technology
-                  <br>
-                  <b>CGPA: </b>3.13/4.33
-                </p>
-
-                <ul>
-                  <p>
-                    <b>Relevant Courseworks:</b>
-                  <ul>
-                    <li>Data Structures and Algorithms</li>
-                    <li>Database Management Systems</li>
-                    <li>Operating Systems</li>
-                    <li>Machine Learning</li>
-                    <li>Computer Vision</li>
-                  </ul>
-                  </p>
-
-                </ul>
-              </div>
-            </div> -->
+            
           </div>
         </div>
       </div>
     </section>
+
     <!-- Eight Section: Publications -->
-    <section id="publications" class="section scrollspy">
+   <section id="publications" class="section scrollspy">
+        <h3 class="page-title white-text teal">Publications</h3>
+     <div class="container flow-text">
+        <ul id="publications-list">
+            <li id="loading">Loading publications...</li>
+        </ul>
+     </div>
+    </section>
+    
+    <!-- Eight Section: Publications -->
+<!--     <section id="publications" class="section scrollspy">
       <h3 class="page-title white-text teal">Technical Reports and Publications</h3>
       <div class="container flow-text">
         <li>
@@ -973,7 +1048,7 @@
           2018
           Anurag Mishra, Bharath Reddy Kadapala, Aloshree Choudhury, et. al.
           International Congress on Cartography(INCA-38), 2018.
-        </li>
+        </li> -->
         <!-- <p>
           Looking for an opportunity to work in a challenging position combining my skills in Software Engineering, which provides professional development, interesting experiences and personal growth.
         </p> -->
@@ -1007,33 +1082,15 @@
           </p>
         </li>
         <li>
-          <b>Brilliant grade (2021)</b>
+          <b>Brilliant grade</b>
           <p>
-            Rated as Brilliant (Grade: 10/10) for my contributions to the organization for the year 2021
+            Rated as Brilliant (Grade: 10/10) for my contributions to the organization for the years 2024, 22, 21 & 20
           </p>
         </li>
         <li>
-          <b>Brilliant grade (2020)</b>
+          <b>Outstanding grade</b>
           <p>
-            Rated as Brilliant (Grade: 10/10) for my contributions to the organization for the year 2020
-          </p>
-        </li>
-        <li>
-          <b>Outstanding grade (2019)</b>
-          <p>
-            Rated as Outstanding (Grade: 9/10) for my contributions to the organization for the year 2019
-          </p>
-        </li>
-        <li>
-          <b>Outstanding grade (2018)</b>
-          <p>
-            Rated as Outstanding (Grade: 9/10) for my contributions to the organization for the year 2018
-          </p>
-        </li>
-        <li>
-          <b>Outstanding grade (2016-17)</b>
-          <p>
-            Rated as Outstanding (Grade: 9/10) for my contributions to the organization for the year 2016-17
+            Rated as Outstanding (Grade: 9/10) for my contributions to the organization for the year 2023, 19, 18, 17 & 16
           </p>
         </li>
         <!-- <li>
@@ -1077,11 +1134,6 @@
       <h3 class="page-title white-text teal">Contact</h3>
       <div class="container">
         <p>
-          <a aria-label="Call Bharath" data-position="top" data-tooltip="Call Bharath"
-            class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i class="fa fa-phone"></i><a
-              aria-label="Call Bharath">+918547050334</a></a>
-        </p>
-        <p>
           <a aria-label="Email Bharath" href="mailto:bharathkadapala@outlook.com" target="_blank" data-position="top"
             data-tooltip="Email Bharath" class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
               class="fa fa-envelope"></i><a aria-label="Email Bharath" href="mailto:bharathkadapala@outlook.com"
@@ -1115,6 +1167,7 @@
       backSpeed: 40
     });
   </script>
+  
 
 
   <!-- jQuery-->
