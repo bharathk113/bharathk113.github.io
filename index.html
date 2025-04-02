@@ -72,17 +72,22 @@
                     let index = 1;
                     publications.forEach(pub => {
                         const titleElem = pub.querySelector('.gsc_a_t a');
-                        const authorsElem = pub.querySelector('.gsc_a_t div');
-                        const journalElem = pub.querySelector('.gsc_a_t div:nth-child(2)');
+                        const authorsElem = pub.querySelector('.gsc_a_t div.gs_gray');
+                        const journalElem = pub.querySelector('.gsc_a_t div.gs_gray:nth-of-type(2)');
                         const yearElem = pub.querySelector('.gsc_a_y span');
                         const citationElem = pub.querySelector('.gsc_a_c a');
                         
                         if (titleElem) {
                             const title = titleElem.innerText;
                             const link = 'https://scholar.google.com' + titleElem.getAttribute('href');
-                            const authors = authorsElem ? authorsElem.innerText : 'Unknown authors';
-                            const journal = journalElem ? journalElem.innerText : 'Unknown journal';
-                            const year = yearElem ? yearElem.innerText : 'Unknown year';
+                            const authors = authorsElem ? authorsElem.innerText.split(', ').join(', ') : 'Unknown authors';
+                            let journal = 'Unknown journal';
+                            let year = 'Unknown year';
+                            if (journalElem && journalElem.innerText.includes(',')) {
+                                let journalParts = journalElem.innerText.split(', ');
+                                journal = journalParts.slice(0, -1).join(', ');
+                                year = journalParts[journalParts.length - 1];
+                            }
                             const citations = citationElem ? citationElem.innerText : 'No citations';
                             const citationLink = citationElem ? 'https://scholar.google.com' + citationElem.getAttribute('href') : '#';
                             
