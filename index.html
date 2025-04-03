@@ -39,7 +39,7 @@
             if (window.loadingTypedInstance) {
                 window.loadingTypedInstance.destroy();
             }
-            window.loadingTypedInstance = new Typed('#loading', {
+            window.loadingTypedInstance = new Typed('.loading', {
                 strings: ["Fetching latest research...", "Retrieving publications...", "Loading articles..."],
                 loop: true,
                 typeSpeed: 80,
@@ -989,7 +989,7 @@
         <h3 class="page-title white-text teal">Publications</h3>
      <div class="container flow-text">
         <ul id="publications-list">
-            <li id="loading"></li>
+            <h5 style="color:#fff">A <span class="loading" style="font-weight: 300; color:#004d40"></span></h5>
         </ul>
      </div>
     </section>
