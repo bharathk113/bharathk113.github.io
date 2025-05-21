@@ -59,15 +59,15 @@
                 publications.forEach(pub => {
                     const title = pub.bib.title || 'No title';
                     const link = pub.pub_url || '#';
-                    const authors = pub.bib.author || 'Unknown authors';
-                    const journal = pub.bib.journal || pub.bib.publisher || 'Unknown journal';
-                    const year = pub.bib.pub_year || pub.bib.year || 'Unknown year';
+                    // const authors = pub.bib.author || 'Unknown authors';
+                    const journal = pub.bib.citation || pub.bib.publisher || 'Unknown journal';
+                    // const year = pub.bib.pub_year || pub.bib.year || 'Unknown year';
                     const citations = pub.num_citations || 0;
-                    const citationLink = pub.citation_url || '#';
+                    const citationLink = pub.citedby_url || '#';
         
                     publicationsList += `<li>
                         <strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
-                        <em>${authors}</em><br>
+                        // <em>${authors}</em><br>
                         <span><strong>${journal}</strong>, ${year}</span><br>
                         <span>Citations: ${citations > 0 ? `<a href="${citationLink}" target="_blank">${citations}</a>` : 'No citations'}</span>
                     </li>`;
