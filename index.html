@@ -52,7 +52,7 @@
             try {
                 const response = await fetch(backendUrl);
                 const data = await response.json();
-        
+                console.log(data)
                 const publications = data.publications || [];
                 let publicationsList = '';
                 let index = 1;
