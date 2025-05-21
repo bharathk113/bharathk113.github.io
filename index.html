@@ -48,48 +48,30 @@
         });
 
         async function fetchPublications() {
-            const proxyUrl = 'https://crossorigin.me/';
-            const scholarUrl = 'https://scholar.google.com/citations?user=L9uJncUAAAAJ&hl=en';
-        
+            const backendUrl = 'https://render-services-qzp5.onrender.com/scholar?user=L9uJncUAAAAJ';
             try {
-                const response = await fetch(proxyUrl + scholarUrl);
-                const html = await response.text();
+                const response = await fetch(backendUrl);
+                const data = await response.json();
         
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const publications = doc.querySelectorAll('.gsc_a_tr');
-        
+                const publications = data.publications || [];
                 let publicationsList = '';
                 let index = 1;
                 publications.forEach(pub => {
-                    const titleElem = pub.querySelector('.gsc_a_t a');
-                    const authorsElem = pub.querySelector('.gsc_a_t div.gs_gray');
-                    const journalElem = pub.querySelector('.gsc_a_t div.gs_gray:nth-of-type(2)');
-                    const yearElem = pub.querySelector('.gsc_a_y span');
-                    const citationElem = pub.querySelector('.gsc_a_c a');
+                    const title = pub.bib.title || 'No title';
+                    const link = pub.pub_url || '#';
+                    const authors = pub.bib.author || 'Unknown authors';
+                    const journal = pub.bib.journal || pub.bib.publisher || 'Unknown journal';
+                    const year = pub.bib.pub_year || pub.bib.year || 'Unknown year';
+                    const citations = pub.num_citations || 0;
+                    const citationLink = pub.citation_url || '#';
         
-                    if (titleElem) {
-                        const title = titleElem.innerText;
-                        const link = 'https://scholar.google.com' + titleElem.getAttribute('href');
-                        const authors = authorsElem ? authorsElem.innerText.split(', ').join(', ') : 'Unknown authors';
-                        let journal = 'Unknown journal';
-                        let year = 'Unknown year';
-                        if (journalElem && journalElem.innerText.includes(',')) {
-                            let journalParts = journalElem.innerText.split(', ');
-                            journal = journalParts.slice(0, -1).join(', ');
-                            year = journalParts[journalParts.length - 1];
-                        }
-                        const citations = citationElem ? citationElem.innerText : 'No citations';
-                        const citationLink = citationElem ? citationElem.getAttribute('href') : '#';
-        
-                        publicationsList += `<li>
-                            <strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
-                            <em>${authors}</em><br>
-                            <span><strong>${journal}</strong>, ${year}</span><br>
-                            <span>Citations: <a href="${citationLink}" target="_blank">${citations}</a></span>
-                        </li>`;
-                        index++;
-                    }
+                    publicationsList += `<li>
+                        <strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
+                        <em>${authors}</em><br>
+                        <span><strong>${journal}</strong>, ${year}</span><br>
+                        <span>Citations: ${citations > 0 ? `<a href="${citationLink}" target="_blank">${citations}</a>` : 'No citations'}</span>
+                    </li>`;
+                    index++;
                 });
         
                 document.getElementById('publications-list').innerHTML = publicationsList || '<li>No publications found.</li>';
@@ -98,6 +80,7 @@
                 document.getElementById('publications-list').innerHTML = '<li>Error loading publications.</li>';
             }
         }
+
         
         window.onload = fetchPublications;
 
