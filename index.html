@@ -51,7 +51,20 @@
             document.getElementById('publications-list').innerHTML = '<li id="loading">Loading publications...</li>';
             const proxyUrl = 'https://api.allorigins.win/get?url=';
             const scholarUrl = encodeURIComponent('https://scholar.google.com/citations?user=L9uJncUAAAAJ&hl=en');
+            try {
+                const response = await fetch(proxyUrl + scholarUrl);
+                const textData = await response.text(); // Get raw text instead of JSON
             
+                console.log(textData); // Inspect the response content
+                const data = JSON.parse(textData); // Try parsing it explicitly
+            
+                if (data && data.contents) {
+                    // Continue processing...
+                }
+            } catch (error) {
+                console.error("Error parsing JSON:", error);
+            }
+
             try {
                 const response = await fetch(proxyUrl + scholarUrl);
                 const data = await response.json();
