@@ -39,7 +39,7 @@
             if (window.loadingTypedInstance) {
                 window.loadingTypedInstance.destroy();
             }
-            window.loadingTypedInstance = new Typed('#loading', {
+            window.loadingTypedInstance = new Typed('.loading', {
                 strings: ["Fetching latest research...", "Retrieving publications...", "Loading articles..."],
                 loop: true,
                 typeSpeed: 80,
@@ -48,7 +48,7 @@
         });
 
         async function fetchPublications() {
-            document.getElementById('publications-list').innerHTML = '<li id="loading">Loading publications...</li>';
+            // document.getElementById('publications-list').innerHTML = '<li id="loading">Loading publications...</li>';
             const proxyUrl = 'https://api.allorigins.win/get?url=';
             const scholarUrl = encodeURIComponent('https://scholar.google.com/citations?user=L9uJncUAAAAJ&hl=en');
 
@@ -989,7 +989,7 @@
         <h3 class="page-title white-text teal">Publications</h3>
      <div class="container flow-text">
         <ul id="publications-list">
-            <li id="loading">Loading publications...</li>
+            <h5 style="color:#004d40"><span class="loading" style="font-weight: 300; color:#004d40"></span></h5>
         </ul>
      </div>
     </section>
