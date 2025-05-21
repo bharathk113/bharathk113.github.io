@@ -48,63 +48,51 @@
         });
 
         async function fetchPublications() {
-            // document.getElementById('publications-list').innerHTML = '<li id="loading">Loading publications...</li>';
-            const proxyUrl = 'https://api.allorigins.win/get?url=';
-            const scholarUrl = encodeURIComponent('https://scholar.google.com/citations?user=L9uJncUAAAAJ&hl=en');
-
+            const proxyUrl = 'https://crossorigin.me/';
+            const scholarUrl = 'https://scholar.google.com/citations?user=L9uJncUAAAAJ&hl=en';
+        
             try {
                 const response = await fetch(proxyUrl + scholarUrl);
-                const text = await response.text();
-                let data;
-                try {
-                    data = JSON.parse(text);
-                } catch (e) {
-                    console.error('Invalid JSON:', text);
-                    document.getElementById('publications-list').innerHTML = '<li>Error loading publications (invalid response).</li>';
-                    return;
-                }
-
-                
-                if (data && data.contents) {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(data.contents, 'text/html');
-                    const publications = doc.querySelectorAll('.gsc_a_tr');
-                    
-                    let publicationsList = '';
-                    let index = 1;
-                    publications.forEach(pub => {
-                        const titleElem = pub.querySelector('.gsc_a_t a');
-                        const authorsElem = pub.querySelector('.gsc_a_t div.gs_gray');
-                        const journalElem = pub.querySelector('.gsc_a_t div.gs_gray:nth-of-type(2)');
-                        const yearElem = pub.querySelector('.gsc_a_y span');
-                        const citationElem = pub.querySelector('.gsc_a_c a');
-                        
-                        if (titleElem) {
-                            const title = titleElem.innerText;
-                            const link = 'https://scholar.google.com' + titleElem.getAttribute('href');
-                            const authors = authorsElem ? authorsElem.innerText.split(', ').join(', ') : 'Unknown authors';
-                            let journal = 'Unknown journal';
-                            let year = 'Unknown year';
-                            if (journalElem && journalElem.innerText.includes(',')) {
-                                let journalParts = journalElem.innerText.split(', ');
-                                journal = journalParts.slice(0, -1).join(', ');
-                                year = journalParts[journalParts.length - 1];
-                            }
-                            const citations = citationElem ? citationElem.innerText : 'No citations';
-                            const citationLink = citationElem ? citationElem.getAttribute('href') : '#';
-                            
-                            publicationsList += `<li>
-                                <strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
-                                <em>${authors}</em><br>
-                                <span><strong>${journal}</strong>, ${year}</span><br>
-                                <span>Citations: <a href="${citationLink}" target="_blank">${citations}</a></span>
-                            </li>`;
-                            index++;
+                const html = await response.text();
+        
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const publications = doc.querySelectorAll('.gsc_a_tr');
+        
+                let publicationsList = '';
+                let index = 1;
+                publications.forEach(pub => {
+                    const titleElem = pub.querySelector('.gsc_a_t a');
+                    const authorsElem = pub.querySelector('.gsc_a_t div.gs_gray');
+                    const journalElem = pub.querySelector('.gsc_a_t div.gs_gray:nth-of-type(2)');
+                    const yearElem = pub.querySelector('.gsc_a_y span');
+                    const citationElem = pub.querySelector('.gsc_a_c a');
+        
+                    if (titleElem) {
+                        const title = titleElem.innerText;
+                        const link = 'https://scholar.google.com' + titleElem.getAttribute('href');
+                        const authors = authorsElem ? authorsElem.innerText.split(', ').join(', ') : 'Unknown authors';
+                        let journal = 'Unknown journal';
+                        let year = 'Unknown year';
+                        if (journalElem && journalElem.innerText.includes(',')) {
+                            let journalParts = journalElem.innerText.split(', ');
+                            journal = journalParts.slice(0, -1).join(', ');
+                            year = journalParts[journalParts.length - 1];
                         }
-                    });
-                    
-                    document.getElementById('publications-list').innerHTML = publicationsList || '<li>No publications found.</li>';
-                }
+                        const citations = citationElem ? citationElem.innerText : 'No citations';
+                        const citationLink = citationElem ? citationElem.getAttribute('href') : '#';
+        
+                        publicationsList += `<li>
+                            <strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
+                            <em>${authors}</em><br>
+                            <span><strong>${journal}</strong>, ${year}</span><br>
+                            <span>Citations: <a href="${citationLink}" target="_blank">${citations}</a></span>
+                        </li>`;
+                        index++;
+                    }
+                });
+        
+                document.getElementById('publications-list').innerHTML = publicationsList || '<li>No publications found.</li>';
             } catch (error) {
                 console.error('Error fetching publications:', error);
                 document.getElementById('publications-list').innerHTML = '<li>Error loading publications.</li>';
@@ -112,6 +100,7 @@
         }
         
         window.onload = fetchPublications;
+
     </script>
 
   <!-- Open Graph-->
