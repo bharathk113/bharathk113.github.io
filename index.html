@@ -58,7 +58,7 @@
                 let index = 1;
                 publications.forEach(pub => {
                     const title = pub.bib.title || 'No title';
-                    const link = pub.pub_url || '#';
+                    const article_link = pub.cites_id ? `https://scholar.google.com/scholar?oi=bibs&cluster=${pub.cites_id}` : '#';
                     // const authors = pub.bib.author || 'Unknown authors';
                     const journal = pub.bib.citation || pub.bib.publisher || 'Unknown journal';
                     // const year = pub.bib.pub_year || pub.bib.year || 'Unknown year';
