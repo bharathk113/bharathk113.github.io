@@ -48,61 +48,41 @@
         });
 
         async function fetchPublications() {
-            // document.getElementById('publications-list').innerHTML = '<li id="loading">Loading publications...</li>';
-            const proxyUrl = 'https://api.allorigins.win/get?url=';
-            const scholarUrl = encodeURIComponent('https://scholar.google.com/citations?user=L9uJncUAAAAJ&hl=en');
-
+            const backendUrl = 'https://render-services-qzp5.onrender.com/scholar?user=L9uJncUAAAAJ';
             try {
-                const response = await fetch(proxyUrl + scholarUrl);
+                const response = await fetch(backendUrl);
                 const data = await response.json();
-                
-                if (data && data.contents) {
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(data.contents, 'text/html');
-                    const publications = doc.querySelectorAll('.gsc_a_tr');
-                    
-                    let publicationsList = '';
-                    let index = 1;
-                    publications.forEach(pub => {
-                        const titleElem = pub.querySelector('.gsc_a_t a');
-                        const authorsElem = pub.querySelector('.gsc_a_t div.gs_gray');
-                        const journalElem = pub.querySelector('.gsc_a_t div.gs_gray:nth-of-type(2)');
-                        const yearElem = pub.querySelector('.gsc_a_y span');
-                        const citationElem = pub.querySelector('.gsc_a_c a');
-                        
-                        if (titleElem) {
-                            const title = titleElem.innerText;
-                            const link = 'https://scholar.google.com' + titleElem.getAttribute('href');
-                            const authors = authorsElem ? authorsElem.innerText.split(', ').join(', ') : 'Unknown authors';
-                            let journal = 'Unknown journal';
-                            let year = 'Unknown year';
-                            if (journalElem && journalElem.innerText.includes(',')) {
-                                let journalParts = journalElem.innerText.split(', ');
-                                journal = journalParts.slice(0, -1).join(', ');
-                                year = journalParts[journalParts.length - 1];
-                            }
-                            const citations = citationElem ? citationElem.innerText : 'No citations';
-                            const citationLink = citationElem ? citationElem.getAttribute('href') : '#';
-                            
-                            publicationsList += `<li>
-                                <strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
-                                <em>${authors}</em><br>
-                                <span><strong>${journal}</strong>, ${year}</span><br>
-                                <span>Citations: <a href="${citationLink}" target="_blank">${citations}</a></span>
-                            </li>`;
-                            index++;
-                        }
-                    });
-                    
-                    document.getElementById('publications-list').innerHTML = publicationsList || '<li>No publications found.</li>';
-                }
+                console.log(data)
+                const publications = data.publications || [];
+                let publicationsList = '';
+                let index = 1;
+                publications.forEach(pub => {
+                    const title = pub.bib.title || 'No title';
+                    const link = pub.cites_id ? `https://scholar.google.com/scholar?oi=bibs&cluster=${pub.cites_id}` : '#';
+                    // const authors = pub.bib.author || 'Unknown authors';
+                    const journal = pub.bib.citation || pub.bib.publisher || 'Unknown journal';
+                    // const year = pub.bib.pub_year || pub.bib.year || 'Unknown year';
+                    const citations = pub.num_citations || 0;
+                    const citationLink = pub.citedby_url || '#';
+        
+                    publicationsList += `<li>
+                        <strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
+                        <span>${journal}</span><br>
+                        <span>Citations: ${citations > 0 ? `<a href="${citationLink}" target="_blank">${citations}</a>` : 'No citations'}</span>
+                    </li>`;
+                    index++;
+                });
+        
+                document.getElementById('publications-list').innerHTML = publicationsList || '<li>No publications found.</li>';
             } catch (error) {
                 console.error('Error fetching publications:', error);
                 document.getElementById('publications-list').innerHTML = '<li>Error loading publications.</li>';
             }
         }
+
         
         window.onload = fetchPublications;
+
     </script>
 
   <!-- Open Graph-->
@@ -373,11 +353,9 @@
       <h3 class="page-title white-text teal">About</h3>
       <div class="container flow-text">
         <p>
-          I am a Remote Sensing Data Engineer at the National Remote Sensing Centre, Indian Space Research Organization.
+          Passionate and results-driven Data Scientist with proven expertise in <b>machine learning, statistical analysis, remote sensing, image processing, and geospatial data science</b>. Adept at building scalable solutions for real-world problems in water resources and environmental monitoring.
         </p>
-        <p>
-          Skilled in Digital Image Processing, Data analytics, ML algorithms, open source ML, DP and DIP libraries, ESRI/Hexagonal/PCI Products, Statistical Data Analysis and Remote Sensing.
-        </p>
+        
       </div>
     </section>
 
@@ -403,46 +381,19 @@
                 </p>
               </div>
             </div>
-            <div class="role brown-text text-darken-2">Scientist/Engineer - "SD"</div>
+            <div class="role brown-text text-darken-2">Scientist/Engineer - "SE"</div>
             <ul>
               <p>
-                Worked on <b>geo-spatial data production, devopment of geo-spatial tools and techniques</b> for processing Remote Sensing and GIS data. Following are the major projects/activities I'm involved in:
-                <li>
-                  Remote Sensing and GIS-based solutions for operational hydrological drought assessment
-                </li>
-                <li>
-                  Multi-sensor based temporal surface "Water Bodies Information System" (<a href="https://bhuvan-wbis.nrsc.gov.in/">WBIS</a>)
-                </li>
-                <li>
-                  Orthorectified imagery generation of entire India for Bhuvan - a geoportal of Indian Space Research Organization
-                </li>
-                <li>
-                  Development of GIS solutions, tools and maps for irrigation and command area development of Telangana for efficient water resources planning (TWRIS)
-                </li>
-                <li>
-                  Applications of UAV data in capacity estimation of minor irrigation tanks
-                </li>
-                <li>
-                  Mapping of river course changes of Yamuna near Mathura and Vrindavan
-                </li>
-                <!-- <li>
-                  <b>Tools:</b> Python, Flask, MongoDB
-                </li> -->
-              </p>
-              <p>
-                Developed <b>GIS applications (using opensource tools)</b>, such as:
-                <li>
-                  Catchment delineation for irrigation tanks
-                </li>
-                <li>
-                  Extraction of paddy grown regions from <b>Synthetic Aperture Radar (SAR) imagery using machine learning</b>
-                </li>
-                <li>
-                  Pan-sharpening using HPF & Brovey Fusion
-                </li>
-                <li>
-                  Optimal satellite image pair selector for minimal gap in pan-sharpened product
-                </li>
+                <ul>
+                  <li>Built reliable drought monitoring models used by government agencies.</li>
+                  <li>Designed ETL pipelines with open-source tools.</li>
+                  <li>Implemented advanced image processing workflows.</li>
+                  <li>Automated satellite data processing at scale.</li>
+                  <li>Streamlined data workflows and operational tasks.</li>
+                  <li>Leveraged multi-source geospatial data for insights.</li>
+                  <li>Developed ML models integrating satellite and field data.</li>
+                  <li>Applied data fusion for robust, reliable analytics.</li>
+                </ul>
               </p>
             </ul>
           </div>
