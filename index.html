@@ -35,55 +35,98 @@
   </script>
     <script src="assets/vendor/typed.js/typed.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            if (window.loadingTypedInstance) {
-                window.loadingTypedInstance.destroy();
-            }
-            window.loadingTypedInstance = new Typed('.loading', {
-                strings: ["Fetching latest research...", "Retrieving publications...", "Loading articles..."],
-                loop: true,
-                typeSpeed: 80,
-                backSpeed: 40
-            });
-        });
-
-        async function fetchPublications() {
-            const backendUrl = 'https://render-services-qzp5.onrender.com/scholar?user=L9uJncUAAAAJ';
-            try {
-                const response = await fetch(backendUrl);
-                const data = await response.json();
-                console.log(data)
-                const publications = data.publications || [];
-                let publicationsList = '';
-                let index = 1;
-                publications.forEach(pub => {
-                    const title = pub.bib.title || 'No title';
-                    const link = pub.cites_id ? `https://scholar.google.com/scholar?oi=bibs&cluster=${pub.cites_id}` : '#';
-                    // const authors = pub.bib.author || 'Unknown authors';
-                    const journal = pub.bib.citation || pub.bib.publisher || 'Unknown journal';
-                    // const year = pub.bib.pub_year || pub.bib.year || 'Unknown year';
-                    const citations = pub.num_citations || 0;
-                    const citationLink = pub.citedby_url || '#';
-        
-                    publicationsList += `<li>
-                        <strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
-                        <span>${journal}</span><br>
-                        <span>Citations: ${citations > 0 ? `<a href="${citationLink}" target="_blank">${citations}</a>` : 'No citations'}</span>
-                    </li>`;
-                    index++;
-                });
-        
-                document.getElementById('publications-list').innerHTML = publicationsList || '<li>No publications found.</li>';
-            } catch (error) {
-                console.error('Error fetching publications:', error);
-                document.getElementById('publications-list').innerHTML = '<li>Error loading publications.</li>';
-            }
-        }
-
-        
-        window.onload = fetchPublications;
-
-    </script>
+      document.addEventListener("DOMContentLoaded", function() {
+          // Initialize Typed.js on DOMContentLoaded
+          // Ensure the element with class 'loading' exists in your HTML
+          const loadingElement = document.querySelector('.loading');
+          if (loadingElement) {
+              if (window.loadingTypedInstance) {
+                  window.loadingTypedInstance.destroy();
+              }
+              window.loadingTypedInstance = new Typed('.loading', {
+                  strings: ["Fetching latest research...", "Retrieving publications...", "Loading articles..."],
+                  loop: true,
+                  typeSpeed: 80,
+                  backSpeed: 40
+              });
+          }
+      });
+  
+      async function fetchPublications() {
+          // IMPORTANT: Replace 'https://us-central1-dotted-tube-348605.cloudfunctions.net' with YOUR ACTUAL base URL.
+          // Ensure '/get-scholar-api/publications' is appended as this is your API endpoint.
+          const backendUrl = 'https://us-central1-dotted-tube-348605.cloudfunctions.net/get-scholar-api/publications'; 
+          
+          try {
+              console.log("Attempting to fetch publications from:", backendUrl);
+              const response = await fetch(backendUrl);
+  
+              if (!response.ok) {
+                  // If the HTTP response status is not 2xx, throw an error
+                  const errorText = await response.text(); // Get more details if available
+                  throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
+              }
+  
+              const data = await response.json();
+              console.log("Received data from API:", data); // Log the full response for debugging
+  
+              // The API returns a direct array of publications
+              const publications = Array.isArray(data) ? data : []; 
+  
+              let publicationsList = '';
+              let index = 1;
+  
+              if (publications.length === 0) {
+                  publicationsList = '<li>No publications found.</li>';
+              } else {
+                  publications.forEach(pub => {
+                      // Access properties directly from the 'pub' object, as stored in Firestore
+                      const title = pub.title || 'No title';
+                      const link = pub.link || '#'; 
+                      const journal = pub.journal || 'Unknown journal';
+                      const year = pub.year || 'Unknown year'; // Including the year
+                      const citations = pub.citations || 0; 
+                      const citationLink = pub.citationLink || '#'; 
+                  
+                      publicationsList += `<li>
+                          <strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
+                          <span>${journal}</span>, <span>${year}</span><br>
+                          <span>Citations: ${citations > 0 ? `<a href="${citationLink}" target="_blank">${citations}</a>` : 'No citations'}</span>
+                      </li>`;
+                      index++;
+                  });
+              }
+              
+              document.getElementById('publications-list').innerHTML = publicationsList;
+              
+              // Clean up Typed.js instance after content is loaded
+              if (window.loadingTypedInstance) {
+                  window.loadingTypedInstance.destroy();
+                  const loadingElement = document.querySelector('.loading');
+                  if (loadingElement) {
+                      loadingElement.textContent = ''; // Clear loading text
+                  }
+              }
+  
+          } catch (error) {
+              console.error('Error fetching publications:', error);
+              document.getElementById('publications-list').innerHTML = '<li>Error loading publications. Please try again later.</li>';
+              
+              // Clean up Typed.js on error too
+              if (window.loadingTypedInstance) {
+                  window.loadingTypedInstance.destroy();
+                  const loadingElement = document.querySelector('.loading');
+                  if (loadingElement) {
+                      loadingElement.textContent = 'Failed to load publications.'; // Indicate failure
+                  }
+              }
+          }
+      }
+  
+      // Call fetchPublications when the window has fully loaded
+      window.onload = fetchPublications;
+  
+  </script>
 
   <!-- Open Graph-->
   <meta property="og:locale" content="en_US" />
