@@ -90,7 +90,8 @@
                   
                       publicationsList += `<li>
                           <strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
-                          <span>${journal}</span>, <span>${year}</span><br>
+                          <span>${year}</span><br>
+                          <span>${journal}</span><br>
                           <span>Citations: ${citations > 0 ? `<a href="${citationLink}" target="_blank">${citations}</a>` : 'No citations'}</span>
                       </li>`;
                       index++;
