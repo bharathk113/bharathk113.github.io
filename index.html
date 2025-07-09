@@ -82,11 +82,15 @@
                   publications.forEach(pub => {
                       // Access properties directly from the 'pub' object, as stored in Firestore
                       const title = pub.title || 'No title';
-                      const link = pub.link || '#'; 
+                      const citationLink = pub.citationLink ? (
+                                                                pub.citationLink.startsWith('/') ?
+                                                                'https://scholar.google.com' + pub.citationLink :
+                                                                pub.citationLink
+                                                              ) : '#';
+                      const link = pub.link || citationLink ; 
                       const journal = pub.journal || 'Unknown journal';
                       const year = pub.year || 'Unknown year'; // Including the year
                       const citations = pub.citations || 0; 
-                      const citationLink = pub.citationLink || '#'; 
                   
                       publicationsList += `<li>
                           <strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
