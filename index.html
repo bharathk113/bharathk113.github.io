@@ -295,6 +295,41 @@
     #chat-send:hover {
       background-color: #00796b;
     }
+    .typing-indicator {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        border-radius: 18px;
+        background-color: #00796b; /* Bot message color */
+        align-self: flex-start;
+        border-bottom-left-radius: 5px;
+        margin: 5px 0;
+      }
+
+      .typing-dot {
+        width: 8px;
+        height: 8px;
+        background-color: white;
+        border-radius: 50%;
+        margin: 0 3px;
+        /* Animation: name, duration, iteration-count, timing-function */
+        animation: bounce 1.4s infinite ease-in-out both;
+      }
+
+      /* Stagger the animation delay for each dot */
+      .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+      .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+      /* .typing-dot:nth-child(3) has no delay */
+
+      @keyframes bounce {
+        0%, 80%, 100% {
+          transform: scale(0);
+        }
+        40% {
+          transform: scale(1.0);
+        }
+      }
+    
   </style>
 </head>
 
@@ -1310,7 +1345,7 @@
 
     <div id="chat-popup" class="chat-popup">
       <div class="chat-header">
-        <span>Chat with me</span>
+        <span>Chat with my AI assistant</span>
         <span id="chat-close" class="chat-close">&times;</span>
       </div>
       <div id="chat-messages" class="chat-messages">
@@ -1323,7 +1358,7 @@
         <button id="chat-send">Send</button>
       </div>
     </div>
-  <script>
+    <script>
       document.addEventListener("DOMContentLoaded", function() {
         // --- Chatbot Elements ---
         const chatBubble = document.getElementById('chat-bubble');
@@ -1333,28 +1368,23 @@
         const chatInput = document.getElementById('chat-input');
         const chatMessages = document.getElementById('chat-messages');
 
-        // 🚨 IMPORTANT: Replace with your ngrok URL! 🚨
-        // Make sure it points to your specific API endpoint (e.g., /chat)
-        // ✅ This is the NEW, correct URL
-        const NGROK_URL = 'https://evelia-nonmutual-carson.ngrok-free.dev';
+        // ✅ Use the final, correct ngrok URL
+        const NGROK_URL = 'https://evelia-nonmutual-carson.ngrok-free.dev'; 
 
         // --- Event Listeners ---
         
-        // Toggle chat popup
         chatBubble.addEventListener('click', () => {
-          chatPopup.style.display = 'flex'; // Show popup
-          chatBubble.style.display = 'none'; // Hide bubble
+          chatPopup.style.display = 'flex'; 
+          chatBubble.style.display = 'none'; 
         });
 
         chatClose.addEventListener('click', () => {
-          chatPopup.style.display = 'none'; // Hide popup
-          chatBubble.style.display = 'flex'; // Show bubble
+          chatPopup.style.display = 'none'; 
+          chatBubble.style.display = 'flex'; 
         });
 
-        // Send message on button click
         chatSend.addEventListener('click', sendMessage);
 
-        // Send message on 'Enter' key press
         chatInput.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
@@ -1367,14 +1397,8 @@
         function sendMessage() {
           const messageText = chatInput.value.trim();
           if (messageText === '') return;
-
-          // 1. Display user's message in UI
           addMessageToUI(messageText, 'user');
-
-          // 2. Clear the input field
           chatInput.value = '';
-
-          // 3. Send message to backend and get response
           fetchBotResponse(messageText);
         }
 
@@ -1384,57 +1408,83 @@
           messageElement.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
           messageElement.textContent = text;
           chatMessages.appendChild(messageElement);
-
-          // Auto-scroll to the latest message
           chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        async function fetchBotResponse(userMessage) {
-        
-        // 🚨 IMPORTANT: Make sure this is your ngrok URL 
-        // 🚨 and it now points to the correct Ollama API endpoint.
-        const OLLAMA_CHAT_URL = NGROK_URL.replace(/\/api\/chat$/, '') + '/api/chat'; 
+        // --- NEW FUNCTION: showTypingIndicator ---
+        function showTypingIndicator() {
+          // Prevent multiple typing indicators
+          if (document.getElementById('typing-indicator')) return; 
 
-        // Ollama's API expects a "messages" array
-        const requestBody = {
-          model: "tinyllama", // Use the model you are running
-          messages: [
-            {
-              role: "user",
-              content: userMessage
-            }
-          ],
-          stream: false // We want the full response at once
-        };
-
-        try {
-          const response = await fetch(OLLAMA_CHAT_URL, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody)
-          });
-
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-
-          const data = await response.json();
+          const indicator = document.createElement('div');
+          indicator.id = 'typing-indicator';
+          indicator.classList.add('typing-indicator'); // Use the CSS class we made
           
-          // **ADJUST THIS** // The bot's reply is inside the 'message.content' object
-          const botReply = data.message && data.message.content 
-                            ? data.message.content 
-                            : 'Sorry, I received an empty response.';
+          // Add the 3 bouncing dots
+          indicator.innerHTML = `
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          `;
           
-          addMessageToUI(botReply, 'bot');
-
-        } catch (error) {
-          console.error('Error fetching bot response:', error);
-          // This will now show the CORS error *if it's still there*
-          addMessageToUI(`Sorry, I am having technical difficulties: ${error.message}`, 'bot');
+          chatMessages.appendChild(indicator);
+          chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
         }
-      }
+
+        // --- NEW FUNCTION: hideTypingIndicator ---
+        function hideTypingIndicator() {
+          const indicator = document.getElementById('typing-indicator');
+          if (indicator) {
+            indicator.remove();
+          }
+        }
+
+        // --- MODIFIED FUNCTION: fetchBotResponse ---
+        async function fetchBotResponse(userMessage) {
+          
+          const OLLAMA_CHAT_URL = NGROK_URL.replace(/\/api\/chat$/, '') + '/api/chat'; 
+
+          const requestBody = {
+            model: "tinyllama", 
+            messages: [{ role: "user", content: userMessage }],
+            stream: false 
+          };
+
+          // ⭐️ NEW: Show typing indicator BEFORE sending
+          showTypingIndicator();
+
+          try {
+            const response = await fetch(OLLAMA_CHAT_URL, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(requestBody)
+            });
+
+            // ⭐️ NEW: Hide typing indicator AFTER getting a response
+            hideTypingIndicator();
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            const botReply = data.message && data.message.content 
+                              ? data.message.content 
+                              : 'Sorry, I received an empty response.';
+            
+            addMessageToUI(botReply, 'bot');
+
+          } catch (error) {
+            console.error('Error fetching bot response:', error);
+
+            // ⭐️ NEW: ALSO hide indicator if there's an error
+            hideTypingIndicator();
+
+            addMessageToUI(`Sorry, I am having technical difficulties: ${error.message}`, 'bot');
+          }
+        }
       });
     </script>
 </body>
