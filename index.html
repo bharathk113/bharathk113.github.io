@@ -132,6 +132,7 @@
       window.onload = fetchPublications;
   
   </script>
+  
 
   <!-- Open Graph-->
   <meta property="og:locale" content="en_US" />
@@ -176,6 +177,123 @@
       width: 100%;
       height: 250px;
       margin: 0 auto;
+    }
+  </style>
+  <style>
+    /* Chatbot Styles */
+    .chat-bubble {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      /* Using your site's theme color */
+      background-color: #004d40; 
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .chat-popup {
+      /* Hidden by default */
+      display: none; 
+      position: fixed;
+      bottom: 100px;
+      right: 25px;
+      width: 350px;
+      max-width: 90%;
+      height: 450px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 1001;
+      /* Use flex to structure the popup */
+      flex-direction: column;
+    }
+
+    .chat-header {
+      background-color: #004d40; /* Theme color */
+      color: white;
+      padding: 15px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .chat-close {
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .chat-messages {
+      flex-grow: 1;
+      padding: 15px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background-color: #f9f9f9;
+    }
+
+    .message {
+      padding: 10px 15px;
+      border-radius: 18px;
+      max-width: 80%;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .user-message {
+      background-color: #e1e1e1;
+      color: black;
+      align-self: flex-end;
+      border-bottom-right-radius: 5px;
+    }
+
+    .bot-message {
+      background-color: #00796b; /* Theme color */
+      color: white;
+      align-self: flex-start;
+      border-bottom-left-radius: 5px;
+    }
+
+    .chat-input-area {
+      display: flex;
+      padding: 15px;
+      border-top: 1px solid #ddd;
+      background-color: #fff;
+    }
+
+    #chat-input {
+      flex-grow: 1;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 8px;
+      margin-right: 10px;
+      box-sizing: border-box; 
+    }
+
+    #chat-send {
+      background-color: #004d40;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #chat-send:hover {
+      background-color: #00796b;
     }
   </style>
 </head>
@@ -1186,7 +1304,125 @@
       })
     })
   </script>
+  <div id="chat-bubble" class="chat-bubble">
+      <i class="fa fa-comment"></i>
+    </div>
 
+    <div id="chat-popup" class="chat-popup">
+      <div class="chat-header">
+        <span>Chat with me</span>
+        <span id="chat-close" class="chat-close">&times;</span>
+      </div>
+      <div id="chat-messages" class="chat-messages">
+        <div class="message bot-message">
+          Hi there! I'm an AI assistant. Feel free to ask me about Bharath's work.
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Type a message...">
+        <button id="chat-send">Send</button>
+      </div>
+    </div>
+  <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // --- Chatbot Elements ---
+        const chatBubble = document.getElementById('chat-bubble');
+        const chatPopup = document.getElementById('chat-popup');
+        const chatClose = document.getElementById('chat-close');
+        const chatSend = document.getElementById('chat-send');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        // 🚨 IMPORTANT: Replace with your ngrok URL! 🚨
+        // Make sure it points to your specific API endpoint (e.g., /chat)
+        const NGROK_URL = 'https://evelia-nonmutual-carson.ngrok.io/api/chat'; 
+
+        // --- Event Listeners ---
+        
+        // Toggle chat popup
+        chatBubble.addEventListener('click', () => {
+          chatPopup.style.display = 'flex'; // Show popup
+          chatBubble.style.display = 'none'; // Hide bubble
+        });
+
+        chatClose.addEventListener('click', () => {
+          chatPopup.style.display = 'none'; // Hide popup
+          chatBubble.style.display = 'flex'; // Show bubble
+        });
+
+        // Send message on button click
+        chatSend.addEventListener('click', sendMessage);
+
+        // Send message on 'Enter' key press
+        chatInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+          }
+        });
+
+        // --- Functions ---
+
+        function sendMessage() {
+          const messageText = chatInput.value.trim();
+          if (messageText === '') return;
+
+          // 1. Display user's message in UI
+          addMessageToUI(messageText, 'user');
+
+          // 2. Clear the input field
+          chatInput.value = '';
+
+          // 3. Send message to backend and get response
+          fetchBotResponse(messageText);
+        }
+
+        function addMessageToUI(text, sender) {
+          const messageElement = document.createElement('div');
+          messageElement.classList.add('message');
+          messageElement.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+          messageElement.textContent = text;
+          chatMessages.appendChild(messageElement);
+
+          // Auto-scroll to the latest message
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        async function fetchBotResponse(userMessage) {
+          // Optional: Add a "typing..." indicator
+          // addMessageToUI('...', 'bot'); 
+
+          try {
+            const response = await fetch(NGROK_URL, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              // **ADJUST THIS BODY** to match what your local LLM API expects.
+              body: JSON.stringify({
+                message: userMessage 
+              })
+            });
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            
+            // **ADJUST THIS** to match the key in your API's JSON response.
+            const botReply = data.reply || 'Sorry, I am not sure how to respond.';
+            
+            // Optional: Remove "typing..." indicator if you added one
+            
+            addMessageToUI(botReply, 'bot');
+
+          } catch (error) {
+            console.error('Error fetching bot response:', error);
+            addMessageToUI('Sorry, I am having technical difficulties. Please try again later.', 'bot');
+          }
+        }
+      });
+    </script>
 </body>
-
 </html>
