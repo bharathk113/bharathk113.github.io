@@ -1358,147 +1358,204 @@
         <button id="chat-send">Send</button>
       </div>
     </div>
+    <script src="context.js"></script>
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // --- Chatbot Elements ---
-      const chatBubble = document.getElementById('chat-bubble');
-      const chatPopup = document.getElementById('chat-popup');
-      const chatClose = document.getElementById('chat-close');
-      const chatSend = document.getElementById('chat-send');
-      const chatInput = document.getElementById('chat-input');
-      const chatMessages = document.getElementById('chat-messages');
+  document.addEventListener("DOMContentLoaded", function() {
+    // --- Chatbot Elements ---
+    const chatBubble = document.getElementById('chat-bubble');
+    const chatPopup = document.getElementById('chat-popup');
+    const chatClose = document.getElementById('chat-close');
+    const chatSend = document.getElementById('chat-send');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
 
-      const NGROK_URL = 'https://evelia-nonmutual-carson.ngrok-free.dev'; 
+    const NGROK_URL = 'https://evelia-nonmutual-carson.ngrok-free.dev';
 
-      // --- ⭐ MODIFIED: Chat History Array ---
-      // We now add a "system" prompt at the beginning to instruct the AI.
-      const chatHistory = [
+    // --- Event Listeners (Unchanged) ---
+    chatBubble.addEventListener('click', () => {
+      chatPopup.style.display = 'flex';
+      chatBubble.style.display = 'none';
+    });
+    chatClose.addEventListener('click', () => {
+      chatPopup.style.display = 'none';
+      chatBubble.style.display = 'flex';
+    });
+    chatSend.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+    // --- Helper Functions (Unchanged) ---
+    function addMessageToUI(text, sender) {
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('message');
+      messageElement.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+      messageElement.textContent = text;
+      chatMessages.appendChild(messageElement);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function showTypingIndicator() {
+      if (document.getElementById('typing-indicator')) return;
+      const indicator = document.createElement('div');
+      indicator.id = 'typing-indicator';
+      indicator.classList.add('typing-indicator');
+      indicator.innerHTML = `<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>`;
+      chatMessages.appendChild(indicator);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function hideTypingIndicator() {
+      const indicator = document.getElementById('typing-indicator');
+      if (indicator) indicator.remove();
+    }
+
+    // --- 💡 NEW "RETRIEVER" (GATEKEEPER) LOGIC 💡 ---
+
+    /**
+     * This function checks the user's question for keywords
+     * and "retrieves" the relevant info from MY_CONTEXT.
+     */
+    function getRelevantContext(message) {
+      const msg = message.toLowerCase();
+      let context = ""; // We will build our context string here
+
+      // 1. General Info
+      if (msg.includes('who is') || msg.includes('about you') || msg.includes('about bharath') || msg.includes('tell me about')) {
+        context += "About Bharath: " + MY_CONTEXT.about_me + "\n\n";
+      }
+
+      // 2. Projects
+      if (msg.includes('project') || msg.includes('work') || msg.includes('portfolio')) {
+        context += "Bharath's Projects: " + JSON.stringify(MY_CONTEXT.projects) + "\n\n";
+      }
+
+      // 3. Publications
+      if (msg.includes('paper') || msg.includes('publication') || msg.includes('scholar') || msg.includes('research')) {
+        context += "Bharath's Publications: " + JSON.stringify(MY_CONTEXT.publications) + "\n\n";
+      }
+
+      // 4. Skills
+      if (msg.includes('skill') || msg.includes('tech') || msg.includes('software') || msg.includes('program')) {
+        context += "Bharath's Skills: " + JSON.stringify(MY_CONTEXT.skills) + "\n\n";
+      }
+
+      // 5. Experience
+      if (msg.includes('experience') || msg.includes('job') || msg.includes('history')) {
+        context += "Bharath's Experience: " + JSON.stringify(MY_CONTEXT.experience) + "\n\n";
+      }
+      
+      // 6. Education
+      if (msg.includes('education') || msg.includes('school') || msg.includes('degree') || msg.includes('college')) {
+        context += "Bharath's Education: " + JSON.stringify(MY_CONTEXT.education) + "\n\n";
+      }
+
+      // 7. Achievements
+      if (msg.includes('award') || msg.includes('achievement') || msg.includes('honor')) {
+        context += "Bharath's Achievements: " + JSON.stringify(MY_CONTEXT.achievements) + "\n\n";
+      }
+
+      // If no keywords matched, context will be empty.
+      // We return null to signal "out of context".
+      if (context === "") {
+        return null;
+      }
+      
+      return context;
+    }
+
+
+    // --- 💡 MODIFIED "sendMessage" FUNCTION 💡 ---
+    
+    function sendMessage() {
+      const messageText = chatInput.value.trim();
+      if (messageText === '') return;
+
+      addMessageToUI(messageText, 'user');
+      chatInput.value = '';
+
+      // --- GATEKEEPER CHECK ---
+      const context = getRelevantContext(messageText);
+
+      if (context === null) {
+        // 1. OUT OF CONTEXT: No keywords matched.
+        // We reply immediately without calling the AI.
+        addMessageToUI("Sorry, that question is out of context. I can only answer questions about Bharath's professional work, skills, and projects.", 'bot');
+      } else {
+        // 2. CONTEXT FOUND: Keywords matched.
+        // We pass the question AND the context to the AI.
+        fetchBotResponse(messageText, context);
+      }
+    }
+
+
+    // --- 💡 MODIFIED "fetchBotResponse" FUNCTION 💡 ---
+
+    async function fetchBotResponse(userMessage, context) {
+      const OLLAMA_CHAT_URL = NGROK_URL.replace(/\/api\/chat$/, '') + '/api/chat';
+
+      // This is the new, powerful System Prompt
+      const systemPrompt = `You are a helpful AI assistant for Bharath Reddy's personal portfolio.
+You MUST use ONLY the following context to answer the user's question.
+Do NOT use any of your own knowledge.
+If the context does not contain the answer, simply say "I do not have that specific information in my context."
+Keep your answers professional and concise.`;
+      
+      const messages = [
         {
           role: "system",
-          content: "You are a helpful and concise AI assistant for Bharath Reddy's personal portfolio. Your name is 'Bharath's AI Assistant'. Answer questions about Bharath's work. Keep your answers brief and to the point."
+          content: systemPrompt
         },
         {
-          role: "assistant",
-          content: "Hi there! I'm an AI assistant. Feel free to ask me about Bharath's work."
+          role: "user",
+          // We provide the context as a "user" message
+          content: `HERE IS THE CONTEXT:\n${context}`
+        },
+        {
+          role: "user",
+          // Finally, we ask the actual question
+          content: `HERE IS THE QUESTION:\n${userMessage}`
         }
       ];
 
-      // --- Event Listeners (Unchanged) ---
-      
-      chatBubble.addEventListener('click', () => {
-        chatPopup.style.display = 'flex'; 
-        chatBubble.style.display = 'none'; 
-      });
+      const requestBody = {
+        model: "tinyllama",
+        messages: messages,
+        stream: false
+      };
 
-      chatClose.addEventListener('click', () => {
-        chatPopup.style.display = 'none'; 
-        chatBubble.style.display = 'flex'; 
-      });
+      showTypingIndicator();
 
-      chatSend.addEventListener('click', sendMessage);
-
-      chatInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-          e.preventDefault();
-          sendMessage();
-        }
-      });
-
-      // --- sendMessage Function (Unchanged) ---
-      function sendMessage() {
-        const messageText = chatInput.value.trim();
-        if (messageText === '') return;
-
-        addMessageToUI(messageText, 'user');
-        chatHistory.push({
-          role: "user",
-          content: messageText
+      try {
+        const response = await fetch(OLLAMA_CHAT_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(requestBody)
         });
+
+        hideTypingIndicator();
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+        const data = await response.json();
+        const botReply = data.message && data.message.content 
+                          ? data.message.content 
+                          : 'Sorry, I received an empty response.';
         
-        chatInput.value = '';
-        fetchBotResponse();
+        addMessageToUI(botReply, 'bot');
+
+      } catch (error) {
+        console.error('Error fetching bot response:', error);
+        hideTypingIndicator();
+        addMessageToUI(`Sorry, I am having technical difficulties: ${error.message}`, 'bot');
       }
-
-      // --- addMessageToUI Function (Unchanged) ---
-      function addMessageToUI(text, sender) {
-        const messageElement = document.createElement('div');
-        messageElement.classList.add('message');
-        messageElement.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
-        messageElement.textContent = text;
-        chatMessages.appendChild(messageElement);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-      }
-
-      // --- showTypingIndicator Function (Unchanged) ---
-      function showTypingIndicator() {
-        if (document.getElementById('typing-indicator')) return; 
-        const indicator = document.createElement('div');
-        indicator.id = 'typing-indicator';
-        indicator.classList.add('typing-indicator');
-        indicator.innerHTML = `
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-          <div class="typing-dot"></div>
-        `;
-        chatMessages.appendChild(indicator);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-      }
-
-      // --- hideTypingIndicator Function (Unchanged) ---
-      function hideTypingIndicator() {
-        const indicator = document.getElementById('typing-indicator');
-        if (indicator) {
-          indicator.remove();
-        }
-      }
-
-      // --- fetchBotResponse Function (Unchanged) ---
-      async function fetchBotResponse() {
-        
-        const OLLAMA_CHAT_URL = NGROK_URL.replace(/\/api\/chat$/, '') + '/api/chat'; 
-
-        const requestBody = {
-          model: "tinyllama", 
-          messages: chatHistory, // Send the whole history, including the new system prompt
-          stream: false 
-        };
-
-        showTypingIndicator();
-
-        try {
-          const response = await fetch(OLLAMA_CHAT_URL, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody)
-          });
-
-          hideTypingIndicator();
-
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-
-          const data = await response.json();
-          const botReply = data.message && data.message.content 
-                            ? data.message.content 
-                            : 'Sorry, I received an empty response.';
-          
-          chatHistory.push({
-            role: "assistant",
-            content: botReply
-          });
-          
-          addMessageToUI(botReply, 'bot');
-
-        } catch (error) {
-          console.error('Error fetching bot response:', error);
-          hideTypingIndicator();
-          addMessageToUI(`Sorry, I am having technical difficulties: ${error.message}`, 'bot');
-        }
-      }
-    });
-  </script>
+    }
+    
+  });
+</script>
 </body>
 </html>
