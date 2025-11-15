@@ -1359,133 +1359,146 @@
       </div>
     </div>
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        // --- Chatbot Elements ---
-        const chatBubble = document.getElementById('chat-bubble');
-        const chatPopup = document.getElementById('chat-popup');
-        const chatClose = document.getElementById('chat-close');
-        const chatSend = document.getElementById('chat-send');
-        const chatInput = document.getElementById('chat-input');
-        const chatMessages = document.getElementById('chat-messages');
+    document.addEventListener("DOMContentLoaded", function() {
+      // --- Chatbot Elements ---
+      const chatBubble = document.getElementById('chat-bubble');
+      const chatPopup = document.getElementById('chat-popup');
+      const chatClose = document.getElementById('chat-close');
+      const chatSend = document.getElementById('chat-send');
+      const chatInput = document.getElementById('chat-input');
+      const chatMessages = document.getElementById('chat-messages');
 
-        // ✅ Use the final, correct ngrok URL
-        const NGROK_URL = 'https://evelia-nonmutual-carson.ngrok-free.dev'; 
+      const NGROK_URL = 'https://evelia-nonmutual-carson.ngrok-free.dev'; 
 
-        // --- Event Listeners ---
-        
-        chatBubble.addEventListener('click', () => {
-          chatPopup.style.display = 'flex'; 
-          chatBubble.style.display = 'none'; 
-        });
-
-        chatClose.addEventListener('click', () => {
-          chatPopup.style.display = 'none'; 
-          chatBubble.style.display = 'flex'; 
-        });
-
-        chatSend.addEventListener('click', sendMessage);
-
-        chatInput.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            sendMessage();
-          }
-        });
-
-        // --- Functions ---
-
-        function sendMessage() {
-          const messageText = chatInput.value.trim();
-          if (messageText === '') return;
-          addMessageToUI(messageText, 'user');
-          chatInput.value = '';
-          fetchBotResponse(messageText);
+      // --- ⭐ MODIFIED: Chat History Array ---
+      // We now add a "system" prompt at the beginning to instruct the AI.
+      const chatHistory = [
+        {
+          role: "system",
+          content: "You are a helpful and concise AI assistant for Bharath Reddy's personal portfolio. Your name is 'Bharath's AI Assistant'. Answer questions about Bharath's work. Keep your answers brief and to the point."
+        },
+        {
+          role: "assistant",
+          content: "Hi there! I'm an AI assistant. Feel free to ask me about Bharath's work."
         }
+      ];
 
-        function addMessageToUI(text, sender) {
-          const messageElement = document.createElement('div');
-          messageElement.classList.add('message');
-          messageElement.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
-          messageElement.textContent = text;
-          chatMessages.appendChild(messageElement);
-          chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
+      // --- Event Listeners (Unchanged) ---
+      
+      chatBubble.addEventListener('click', () => {
+        chatPopup.style.display = 'flex'; 
+        chatBubble.style.display = 'none'; 
+      });
 
-        // --- NEW FUNCTION: showTypingIndicator ---
-        function showTypingIndicator() {
-          // Prevent multiple typing indicators
-          if (document.getElementById('typing-indicator')) return; 
+      chatClose.addEventListener('click', () => {
+        chatPopup.style.display = 'none'; 
+        chatBubble.style.display = 'flex'; 
+      });
 
-          const indicator = document.createElement('div');
-          indicator.id = 'typing-indicator';
-          indicator.classList.add('typing-indicator'); // Use the CSS class we made
-          
-          // Add the 3 bouncing dots
-          indicator.innerHTML = `
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-          `;
-          
-          chatMessages.appendChild(indicator);
-          chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
-        }
+      chatSend.addEventListener('click', sendMessage);
 
-        // --- NEW FUNCTION: hideTypingIndicator ---
-        function hideTypingIndicator() {
-          const indicator = document.getElementById('typing-indicator');
-          if (indicator) {
-            indicator.remove();
-          }
-        }
-
-        // --- MODIFIED FUNCTION: fetchBotResponse ---
-        async function fetchBotResponse(userMessage) {
-          
-          const OLLAMA_CHAT_URL = NGROK_URL.replace(/\/api\/chat$/, '') + '/api/chat'; 
-
-          const requestBody = {
-            model: "tinyllama", 
-            messages: [{ role: "user", content: userMessage }],
-            stream: false 
-          };
-
-          // ⭐️ NEW: Show typing indicator BEFORE sending
-          showTypingIndicator();
-
-          try {
-            const response = await fetch(OLLAMA_CHAT_URL, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(requestBody)
-            });
-
-            // ⭐️ NEW: Hide typing indicator AFTER getting a response
-            hideTypingIndicator();
-
-            if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            const botReply = data.message && data.message.content 
-                              ? data.message.content 
-                              : 'Sorry, I received an empty response.';
-            
-            addMessageToUI(botReply, 'bot');
-
-          } catch (error) {
-            console.error('Error fetching bot response:', error);
-
-            // ⭐️ NEW: ALSO hide indicator if there's an error
-            hideTypingIndicator();
-
-            addMessageToUI(`Sorry, I am having technical difficulties: ${error.message}`, 'bot');
-          }
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
         }
       });
-    </script>
+
+      // --- sendMessage Function (Unchanged) ---
+      function sendMessage() {
+        const messageText = chatInput.value.trim();
+        if (messageText === '') return;
+
+        addMessageToUI(messageText, 'user');
+        chatHistory.push({
+          role: "user",
+          content: messageText
+        });
+        
+        chatInput.value = '';
+        fetchBotResponse();
+      }
+
+      // --- addMessageToUI Function (Unchanged) ---
+      function addMessageToUI(text, sender) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        messageElement.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+        messageElement.textContent = text;
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      // --- showTypingIndicator Function (Unchanged) ---
+      function showTypingIndicator() {
+        if (document.getElementById('typing-indicator')) return; 
+        const indicator = document.createElement('div');
+        indicator.id = 'typing-indicator';
+        indicator.classList.add('typing-indicator');
+        indicator.innerHTML = `
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        `;
+        chatMessages.appendChild(indicator);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      // --- hideTypingIndicator Function (Unchanged) ---
+      function hideTypingIndicator() {
+        const indicator = document.getElementById('typing-indicator');
+        if (indicator) {
+          indicator.remove();
+        }
+      }
+
+      // --- fetchBotResponse Function (Unchanged) ---
+      async function fetchBotResponse() {
+        
+        const OLLAMA_CHAT_URL = NGROK_URL.replace(/\/api\/chat$/, '') + '/api/chat'; 
+
+        const requestBody = {
+          model: "tinyllama", 
+          messages: chatHistory, // Send the whole history, including the new system prompt
+          stream: false 
+        };
+
+        showTypingIndicator();
+
+        try {
+          const response = await fetch(OLLAMA_CHAT_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody)
+          });
+
+          hideTypingIndicator();
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          const botReply = data.message && data.message.content 
+                            ? data.message.content 
+                            : 'Sorry, I received an empty response.';
+          
+          chatHistory.push({
+            role: "assistant",
+            content: botReply
+          });
+          
+          addMessageToUI(botReply, 'bot');
+
+        } catch (error) {
+          console.error('Error fetching bot response:', error);
+          hideTypingIndicator();
+          addMessageToUI(`Sorry, I am having technical difficulties: ${error.message}`, 'bot');
+        }
+      }
+    });
+  </script>
 </body>
 </html>
