@@ -1,1561 +1,862 @@
-<!-- <!DOCTYPE html> -->
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width initial-scale=1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-PGZH8HT');</script>
-  <!-- End Google Tag Manager -->
+    <title>Bharath Reddy | Scientist/Engineer</title>
+    <meta name="description" content="Remote Sensing and GIS Data Engineer with a passion for deriving information products using Earth Observation Data." />
 
-  <!-- Materialize - Compiled and minified CSS-->
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css" />
-  <!-- Google icons - Compiled and minified CSS-->
-  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-  <!-- Font Awesome Icon - CSS-->
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-  <!-- Custom Styles-->
-  <link rel="stylesheet" href="/assets/css/style.css" />
-  <title>Bharath Reddy | Scientist/Engineer</title>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197683058-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'UA-197683058-1');
-  </script>
-    <script src="assets/vendor/typed.js/typed.min.js"></script>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PGZH8HT');</script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-          // Initialize Typed.js on DOMContentLoaded
-          // Ensure the element with class 'loading' exists in your HTML
-          const loadingElement = document.querySelector('.loading');
-          if (loadingElement) {
-              if (window.loadingTypedInstance) {
-                  window.loadingTypedInstance.destroy();
-              }
-              window.loadingTypedInstance = new Typed('.loading', {
-                  strings: ["Fetching latest research...", "Retrieving publications...", "Loading articles..."],
-                  loop: true,
-                  typeSpeed: 80,
-                  backSpeed: 40
-              });
-          }
-      });
-  
-      async function fetchPublications() {
-          // IMPORTANT: Replace 'https://us-central1-dotted-tube-348605.cloudfunctions.net' with YOUR ACTUAL base URL.
-          // Ensure '/get-scholar-api/publications' is appended as this is your API endpoint.
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#059669', // Emerald 600
+                        secondary: '#0f172a', // Slate 900
+                        accent: '#10b981', // Emerald 500
+                        dark: '#1e293b',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+    
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197683058-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-197683058-1');
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #334155; overflow-x: hidden; }
+        
+        /* Chatbot Animations */
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1.0); }
+        }
+        .typing-dot {
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        model-viewer {
+            width: 100%;
+            height: 450px;
+            --poster-color: transparent;
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #059669, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-primary selection:text-white">
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+
+    <nav class="fixed w-full z-50 top-0 start-0 border-b border-white/10 bg-white/80 backdrop-blur-md transition-all duration-300 shadow-sm" id="navbar">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#intro" class="flex items-center space-x-3 rtl:space-x-reverse group">
+                <img src="/assets/img/passport-new.jpg" class="h-10 w-10 rounded-full object-cover border-2 border-primary group-hover:scale-105 transition-transform" alt="Bharath Reddy Logo">
+                <span class="self-center text-xl font-bold whitespace-nowrap text-secondary group-hover:text-primary transition-colors">Bharath Reddy K</span>
+            </a>
+            
+            <button id="mobile-menu-btn" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+
+            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-transparent">
+                    <li><a href="#about" class="block py-2 px-3 text-gray-900 rounded hover:text-primary md:p-0 transition-colors">About</a></li>
+                    <li><a href="#experience" class="block py-2 px-3 text-gray-900 rounded hover:text-primary md:p-0 transition-colors">Experience</a></li>
+                    <li><a href="#projects" class="block py-2 px-3 text-gray-900 rounded hover:text-primary md:p-0 transition-colors">Projects</a></li>
+                    <li><a href="#skills" class="block py-2 px-3 text-gray-900 rounded hover:text-primary md:p-0 transition-colors">Skills</a></li>
+                    <li><a href="#publications" class="block py-2 px-3 text-gray-900 rounded hover:text-primary md:p-0 transition-colors">Publications</a></li>
+                    <li><a href="https://1drv.ms/b/s!AjDDjfn8gzmqqkYuxyKaf2sVNdc-" target="_blank" class="block py-2 px-4 text-white bg-primary rounded-full hover:bg-emerald-700 md:text-white md:px-4 transition-all shadow-lg shadow-emerald-200">Resume</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="intro" class="min-h-screen flex items-center justify-center pt-20 bg-slate-900 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
+            <div class="absolute right-0 top-0 w-[500px] h-[500px] bg-primary blur-[150px] rounded-full animate-pulse"></div>
+            <div class="absolute left-0 bottom-0 w-[500px] h-[500px] bg-blue-600 blur-[150px] rounded-full animate-pulse" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="max-w-screen-xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center z-10">
+            <div class="text-center md:text-left" data-aos="fade-right" data-aos-duration="1000">
+                <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-4 tracking-tight">Hi, I'm <span class="text-gradient">Bharath.</span></h2>
+                <h3 class="text-2xl md:text-3xl text-gray-300 mb-6 h-12 font-light">I am a <span class="typing text-accent font-semibold"></span></h3>
+                <p class="text-gray-400 text-lg mb-8 leading-relaxed max-w-lg mx-auto md:mx-0">
+                    An ambitious, self-motivated Remote Sensing Data Engineer enjoying solving complex real-world problems using Geo-spatial technologies.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                    <a href="#contact" class="px-8 py-3 bg-primary hover:bg-emerald-600 text-white rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg shadow-emerald-900/50">Contact Me</a>
+                    <a href="#about" class="px-8 py-3 border border-gray-600 text-gray-300 hover:text-white hover:border-white rounded-lg font-medium transition-colors">About Me</a>
+                </div>
+
+                <div class="flex gap-6 mt-10 justify-center md:justify-start">
+                    <a href="http://linkedin.com/in/bharath-reddy-k" target="_blank" class="text-gray-400 hover:text-white text-3xl transition-colors transform hover:-translate-y-1"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://github.com/bharathk113/" target="_blank" class="text-gray-400 hover:text-white text-3xl transition-colors transform hover:-translate-y-1"><i class="fa fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="w-full h-[400px] md:h-[500px] animate-float" data-aos="fade-left" data-aos-duration="1200">
+                <model-viewer 
+                    src="/assets/3dobjs/landscape-1.gltf" 
+                    ar 
+                    ar-modes="webxr scene-viewer quick-look" 
+                    camera-controls 
+                    auto-rotate 
+                    shadow-intensity="1"
+                    environment-image="neutral"
+                    class="w-full h-full">
+                </model-viewer>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-white relative">
+        <div class="max-w-4xl mx-auto px-6 text-center" data-aos="fade-up">
+            <h2 class="text-4xl font-bold text-secondary mb-2">About Me</h2>
+            <div class="w-24 h-1.5 bg-primary mx-auto mb-8 rounded-full"></div>
+            <p class="text-xl text-gray-600 leading-relaxed font-light">
+                Passionate and results-driven Data Scientist with proven expertise in <span class="font-bold text-primary">machine learning, statistical analysis, remote sensing, image processing, and geospatial data science</span>. Adept at building scalable solutions for real-world problems in water resources and environmental monitoring.
+            </p>
+        </div>
+    </section>
+
+    <section id="experience" class="py-24 bg-slate-50">
+        <div class="max-w-screen-xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-secondary mb-2 text-center" data-aos="fade-down">Experience</h2>
+            <div class="w-24 h-1.5 bg-primary mx-auto mb-16 rounded-full"></div>
+
+            <div class="relative border-l-4 border-gray-200 ml-4 md:ml-0 md:pl-0 space-y-16">
+                <div class="flex flex-col md:flex-row items-start justify-between relative group" data-aos="fade-right">
+                    <div class="hidden md:block w-[45%] text-right pr-12 pt-2">
+                        <h3 class="text-2xl font-bold text-secondary">National Remote Sensing Centre (ISRO)</h3>
+                        <p class="text-primary font-bold text-lg">Scientist/Engineer - "SE"</p>
+                        <span class="text-sm text-gray-500 font-mono bg-gray-200 px-2 py-1 rounded">July 2016 - Present</span>
+                    </div>
+                    
+                    <div class="absolute left-[-22px] md:left-1/2 md:-ml-3 top-2 w-6 h-6 bg-primary rounded-full border-4 border-white shadow-lg z-10 transform group-hover:scale-125 transition-transform"></div>
+                    
+                    <div class="w-full md:w-[45%] pl-8 md:pl-12">
+                        <div class="md:hidden mb-4">
+                            <h3 class="text-xl font-bold text-secondary">NRSC (ISRO)</h3>
+                            <p class="text-primary font-bold">Scientist/Engineer - "SE"</p>
+                            <span class="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded">July 2016 - Present</span>
+                        </div>
+                        
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 relative overflow-hidden group-hover:border-primary/20">
+                            <div class="absolute top-0 right-0 p-4 opacity-10 grayscale group-hover:grayscale-0 transition-all">
+                                <img src="/assets/img/isro-logo-1.png" class="w-16">
+                            </div>
+                            <ul class="list-disc list-outside ml-4 space-y-3 text-gray-600 relative z-10">
+                                <li>Built reliable drought monitoring models used by government agencies.</li>
+                                <li>Designed ETL pipelines with open-source tools & automated satellite data processing.</li>
+                                <li>Developed ML models integrating satellite and field data.</li>
+                                <li>Streamlined data workflows and leveraged multi-source geospatial data for insights.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-start justify-between relative group" data-aos="fade-left">
+                    <div class="hidden md:block w-[45%] text-right pr-12 pt-2">
+                        <h3 class="text-2xl font-bold text-secondary">Regional Remote Sensing Centre</h3>
+                        <p class="text-primary font-bold text-lg">Project Trainee</p>
+                        <span class="text-sm text-gray-500 font-mono bg-gray-200 px-2 py-1 rounded">Jan 2016 - May 2016</span>
+                    </div>
+                    
+                    <div class="absolute left-[-22px] md:left-1/2 md:-ml-3 top-2 w-6 h-6 bg-gray-400 rounded-full border-4 border-white shadow-lg z-10"></div>
+                    
+                    <div class="w-full md:w-[45%] pl-8 md:pl-12">
+                         <div class="md:hidden mb-4">
+                            <h3 class="text-xl font-bold text-secondary">RRSC</h3>
+                            <p class="text-primary font-bold">Project Trainee</p>
+                            <span class="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded">2016</span>
+                        </div>
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300">
+                             <div class="absolute top-0 right-0 p-4 opacity-10">
+                                <img src="/assets/img/isro-logo-1.png" class="w-16">
+                            </div>
+                            <p class="text-gray-600">Worked towards the application of object-based classification techniques for the identification of citrus orchards using Remote Sensing and GIS tools.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 bg-white">
+        <div class="max-w-screen-xl mx-auto px-6">
+            
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-secondary mb-2">Major Professional Projects</h2>
+                <div class="w-24 h-1.5 bg-primary mx-auto rounded-full"></div>
+                <p class="text-gray-500 mt-4">Selected works in Remote Sensing, AI, and Hydrology</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+                
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 group flex flex-col" data-aos="fade-up" data-aos-delay="0">
+                    <div class="h-48 bg-gray-800 relative flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 to-slate-800"></div>
+                        <i class="fa fa-braille text-6xl text-white/20 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+                            <a href="https://bharathk113.github.io/sar-segformer-portfolio/" target="_blank" class="px-6 py-2 bg-white text-secondary rounded-full font-bold text-sm transform hover:scale-105 transition-transform">View Portfolio</a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-secondary mb-2 group-hover:text-primary transition-colors">SAR SegFormer</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Deep learning based semantic segmentation of Sentinel-1 SAR data for water body detection using Transformer architecture.</p>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-md border border-blue-100">PyTorch</span>
+                                <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-md border border-blue-100">AI/ML</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 group flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-gray-800 relative flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-700 to-blue-900"></div>
+                        <i class="fa fa-tint text-6xl text-white/20 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+                            <a href="https://bharathk113.github.io/sri-webapp/" target="_blank" class="px-6 py-2 bg-white text-secondary rounded-full font-bold text-sm transform hover:scale-105 transition-transform">Launch App</a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-secondary mb-2 group-hover:text-primary transition-colors">SRI Explorer</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Interactive dashboard for Standardized Runoff Index (SRI) using a grid-wise approach for hydrological drought monitoring.</p>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-1 bg-cyan-50 text-cyan-700 text-xs font-semibold rounded-md border border-cyan-100">WebGIS</span>
+                                <span class="px-2 py-1 bg-cyan-50 text-cyan-700 text-xs font-semibold rounded-md border border-cyan-100">Hydrology</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 group flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-gray-800 relative flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-700 to-teal-900"></div>
+                        <i class="fa fa-map-o text-6xl text-white/20 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+                            <a href="https://bharathk113.github.io/sgwi-webapp/" target="_blank" class="px-6 py-2 bg-white text-secondary rounded-full font-bold text-sm transform hover:scale-105 transition-transform">Launch App</a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-secondary mb-2 group-hover:text-primary transition-colors">SGWI Explorer</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Geospatial tool for monitoring Standardized Groundwater Index (SGWI) to assess groundwater drought conditions.</p>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-md border border-emerald-100">WebGIS</span>
+                                <span class="px-2 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-md border border-emerald-100">Groundwater</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 group flex flex-col" data-aos="fade-up">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="/assets/img/bhuvan-wbis.PNG" alt="WBIS" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+                            <a href="https://bhuvan-wbis.nrsc.gov.in/" target="_blank" class="px-6 py-2 bg-white text-secondary rounded-full font-bold text-sm transform hover:scale-105 transition-transform">View Live</a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-secondary mb-2 group-hover:text-primary transition-colors">Water Bodies Info System</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Multi satellite and sensor based water bodies surface water spread information system.</p>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">GDAL</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">Python</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">PostGIS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 group flex flex-col" data-aos="fade-up">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="/assets/img/hydas.png" alt="Drought" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+                             <a href="https://bhuvan.nrsc.gov.in/nhp/#/webgis-drought/map" target="_blank" class="px-6 py-2 bg-white text-secondary rounded-full font-bold text-sm transform hover:scale-105 transition-transform">View Live</a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-secondary mb-2 group-hover:text-primary transition-colors">Drought Assessment</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Characterize spatiotemporal variability of hydrological drought using indices.</p>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">SciPy</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">Python</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 group flex flex-col" data-aos="fade-up">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="/assets/img/bhuvan-2d.PNG" alt="Ortho" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                         <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+                             <a href="https://bhuvan.nrsc.gov.in/" target="_blank" class="px-6 py-2 bg-white text-secondary rounded-full font-bold text-sm transform hover:scale-105 transition-transform">View Live</a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-secondary mb-2 group-hover:text-primary transition-colors">Ortho-mosaic Generation</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">2.5m resolution seamless ortho rectified image tiles generation for Indian Geoportal.</p>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">PCI Geomatica</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">ERDAS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 group flex flex-col" data-aos="fade-up">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="/assets/img/twris.PNG" alt="TWRIS" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+                             <a href="https://bhuvan-app1.nrsc.gov.in/twris/twris.php" target="_blank" class="px-6 py-2 bg-white text-secondary rounded-full font-bold text-sm transform hover:scale-105 transition-transform">View Live</a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-secondary mb-2 group-hover:text-primary transition-colors">Telangana Water Info</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Comprehensive geo-database of water related data for Telangana State.</p>
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">PostGIS</span>
+                                <span class="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-semibold rounded-md">Python</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 group flex flex-col" data-aos="fade-up">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="/assets/img/UAV.jpg" alt="UAV" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+                             <a href="https://link.springer.com/article/10.1007/s12524-020-01164-x" target="_blank" class="px-6 py-2 bg-white text-secondary rounded-full font-bold text-sm transform hover:scale-105 transition-transform">Read Paper</a>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-secondary mb-2 group-hover:text-primary transition-colors">UAV for Water</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Capacity estimation of minor irrigation tanks using UAV and satellite based remote sensing.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 group flex flex-col" data-aos="fade-up">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="/assets/img/accuracy-ortho.jpg" alt="Accuracy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-secondary mb-2 group-hover:text-primary transition-colors">Accuracy Evaluator</h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-3">Automated orthorectified data geometric accuracy evaluator using Fourier phase correlation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mb-16 pt-12 border-t border-gray-200" data-aos="fade-up">
+                <h2 class="text-4xl font-bold text-secondary mb-2">Hobby Projects</h2>
+                <div class="w-24 h-1.5 bg-yellow-400 mx-auto rounded-full"></div>
+                <p class="text-gray-500 mt-4">Fun side projects and experiments</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 justify-center">
+                 <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-3xl overflow-hidden shadow-lg border-2 border-yellow-100 hover:border-yellow-300 transition-all duration-300 group" data-aos="zoom-in">
+                    <div class="p-8 flex flex-col items-center text-center">
+                        <div class="w-20 h-20 bg-white rounded-2xl shadow-md flex items-center justify-center mb-6 transform rotate-3 group-hover:rotate-0 transition-all">
+                            <img src="https://bharathk113.github.io/tappy-bird/tappy-bird-logo.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" class="w-16 h-16 object-contain">
+                            <i class="fa fa-gamepad text-4xl text-yellow-500 hidden"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Tappy Bird</h3>
+                        <p class="text-gray-600 mb-6">A fun browser-based arcade game inspired by Flappy Bird. Features global leaderboards and Google Sign-in integration.</p>
+                        <a href="https://bharathk113.github.io/tappy-bird/" target="_blank" class="inline-flex items-center gap-2 px-8 py-3 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 rounded-full font-bold transition-transform transform hover:scale-105 shadow-md">
+                            <i class="fa fa-play"></i> Play Now
+                        </a>
+                    </div>
+                 </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="skills" class="py-24 bg-slate-50">
+        <div class="max-w-screen-xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-secondary mb-2 text-center" data-aos="fade-up">Skills</h2>
+            <div class="w-24 h-1.5 bg-primary mx-auto mb-16 rounded-full"></div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="0">
+                    <h3 class="text-lg font-bold text-primary mb-4 border-b pb-3">Languages & DB</h3>
+                    <div class="flex flex-wrap gap-2">
+                         <span class="flex items-center gap-2 px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium"><img src="/assets/img/python-logo-1-300x300.jpg" class="w-4 h-4 rounded-full">Python</span>
+                         <span class="flex items-center gap-2 px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium"><img src="/assets/img/postgresql.png" class="w-4 h-4 rounded-full">PostgreSQL</span>
+                         <span class="flex items-center gap-2 px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium"><img src="/assets/img/postgis.png" class="w-4 h-4 rounded-full">PostGIS</span>
+                         <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">Matlab</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-lg font-bold text-primary mb-4 border-b pb-3">Libraries</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">NumPy</span>
+                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">OpenCV</span>
+                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">Scikit-learn</span>
+                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">Matplotlib</span>
+                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">GDAL</span>
+                    </div>
+                </div>
+
+                 <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-lg font-bold text-primary mb-4 border-b pb-3">Geospatial Software</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">QGIS</span>
+                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">ArcGIS</span>
+                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">ERDAS</span>
+                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">PCI Geomatica</span>
+                    </div>
+                </div>
+
+                 <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-lg font-bold text-primary mb-4 border-b pb-3">Others</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">LaTeX</span>
+                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">Beamer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-secondary mb-2 text-center" data-aos="fade-up">Education</h2>
+            <div class="w-24 h-1.5 bg-primary mx-auto mb-16 rounded-full"></div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-slate-50 p-8 rounded-2xl border border-gray-100 relative overflow-hidden" data-aos="fade-right">
+                    <div class="text-primary/10 text-9xl absolute -bottom-8 -right-8"><i class="fa fa-graduation-cap"></i></div>
+                    <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-secondary">BITS Pilani</h3>
+                        <p class="text-primary font-medium mb-2">Hyderabad, India</p>
+                        <p class="font-bold text-gray-700 text-lg">M.Tech in Data Science & Engineering</p>
+                        <p class="text-sm text-gray-500 mt-4">Machine Learning, NLP, Deep Learning, Big Data Systems</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-8 rounded-2xl border border-gray-100 relative overflow-hidden" data-aos="fade-left">
+                     <div class="text-primary/10 text-9xl absolute -bottom-8 -right-8"><i class="fa fa-university"></i></div>
+                     <div class="relative z-10">
+                        <h3 class="text-xl font-bold text-secondary">IIST</h3>
+                        <p class="text-primary font-medium mb-2">Trivandrum, India</p>
+                        <p class="font-bold text-gray-700 text-lg">B.Tech in Physical Sciences</p>
+                        <p class="text-sm text-gray-500 mt-4">Remote Sensing, GIS, DIP, Atmospheric Sciences</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications" class="py-24 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-secondary mb-2 text-center" data-aos="fade-up">Publications</h2>
+            <div class="w-24 h-1.5 bg-primary mx-auto mb-12 rounded-full"></div>
+            
+            <div class="bg-white p-10 rounded-2xl shadow-sm min-h-[200px]" data-aos="zoom-in-up">
+                 <ul id="publications-list" class="space-y-6 text-gray-700">
+                     <div class="text-center py-10">
+                        <span class="loading text-primary text-xl font-light"></span>
+                     </div>
+                 </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-secondary mb-2 text-center" data-aos="fade-up">Achievements</h2>
+            <div class="w-24 h-1.5 bg-primary mx-auto mb-16 rounded-full"></div>
+
+            <div class="grid gap-6">
+                <div class="flex items-center gap-6 p-6 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors" data-aos="fade-up">
+                    <div class="w-12 h-12 bg-yellow-100 text-yellow-500 rounded-full flex items-center justify-center text-xl shadow-sm"><i class="fa fa-trophy"></i></div>
+                    <div>
+                        <h4 class="font-bold text-secondary text-lg">Student Merit Scholarship</h4>
+                        <p class="text-gray-600">Awarded by Dept of Space, Govt of India (120 out of 150,000 applicants).</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6 p-6 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-yellow-100 text-yellow-500 rounded-full flex items-center justify-center text-xl shadow-sm"><i class="fa fa-certificate"></i></div>
+                    <div>
+                        <h4 class="font-bold text-secondary text-lg">National Water Mission Award (2019)</h4>
+                        <p class="text-gray-600">2nd Prize for "Comprehensive Water Data Base in Public Domain" (TWRIS).</p>
+                    </div>
+                </div>
+                 <div class="flex items-center gap-6 p-6 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-yellow-100 text-yellow-500 rounded-full flex items-center justify-center text-xl shadow-sm"><i class="fa fa-star"></i></div>
+                    <div>
+                        <h4 class="font-bold text-secondary text-lg">Performance Ratings</h4>
+                        <p class="text-gray-600">Consistently rated "Brilliant" (10/10) and "Outstanding" (9/10) during tenure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-secondary text-white py-16">
+        <div class="max-w-screen-xl mx-auto px-6 text-center">
+             <h2 class="text-3xl font-bold mb-8">Get In Touch</h2>
+             <div class="flex flex-col md:flex-row justify-center gap-8 mb-12">
+                 <a href="mailto:bharathkadapala@outlook.com" class="flex items-center justify-center gap-2 text-lg text-gray-300 hover:text-white transition-colors group">
+                     <span class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-primary transition-colors"><i class="fa fa-envelope"></i></span> 
+                     bharathkadapala@outlook.com
+                 </a>
+                 <a href="http://github.com/bharathk113" target="_blank" class="flex items-center justify-center gap-2 text-lg text-gray-300 hover:text-white transition-colors group">
+                     <span class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-primary transition-colors"><i class="fa fa-github"></i></span>
+                     bharathk113
+                 </a>
+                 <a href="http://linkedin.com/in/bharath-reddy-k" target="_blank" class="flex items-center justify-center gap-2 text-lg text-gray-300 hover:text-white transition-colors group">
+                     <span class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-primary transition-colors"><i class="fa fa-linkedin"></i></span>
+                     bharath-reddy-k
+                 </a>
+             </div>
+             <p class="text-gray-500 text-sm border-t border-gray-700 pt-8">&copy; <span id="year"></span> Bharath Reddy K. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="chat-bubble" class="fixed bottom-6 right-6 w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-emerald-700 transition-colors z-50 animate-bounce">
+        <i class="fa fa-comment text-2xl"></i>
+    </div>
+
+    <div id="chat-popup" class="hidden fixed bottom-24 right-6 w-80 md:w-96 h-[500px] bg-white rounded-2xl shadow-2xl flex-col z-50 border border-gray-200 overflow-hidden">
+        <div class="bg-primary p-4 text-white font-bold flex justify-between items-center">
+            <span class="flex items-center gap-2"><i class="fa fa-robot"></i> Assistant</span>
+            <span id="chat-close" class="cursor-pointer hover:text-gray-200 text-xl">&times;</span>
+        </div>
+        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50 no-scrollbar">
+            <div class="message bot-message self-start bg-white text-gray-800 p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl shadow-sm text-sm border border-gray-100 max-w-[85%]">
+                 Hi there! I'm an AI assistant. Feel free to ask me about Bharath's work.
+            </div>
+        </div>
+        <div class="p-3 bg-white border-t border-gray-100 flex gap-2">
+            <input type="text" id="chat-input" placeholder="Type a message..." class="flex-1 border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+            <button id="chat-send" class="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-emerald-700 transition-colors shadow-sm">
+                <i class="fa fa-paper-plane text-sm"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script src="assets/vendor/typed.js/typed.min.js"></script>
+    
+    <script>
+        // Init AOS
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+        });
+
+        // Footer Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('navbar-default').classList.toggle('hidden');
+        });
+
+        // Typed JS Initialization
+        document.addEventListener("DOMContentLoaded", function() {
+            var typed = new Typed('.typing',{
+                strings: ["Researcher", "Developer", "Fast Learner", "Gamer"],
+                loop: true,
+                typeSpeed: 80,
+                backSpeed: 40
+            });
+
+            // Loading Typed Text
+            const loadingElement = document.querySelector('.loading');
+            if (loadingElement) {
+                if (window.loadingTypedInstance) {
+                    window.loadingTypedInstance.destroy();
+                }
+                window.loadingTypedInstance = new Typed('.loading', {
+                    strings: ["Fetching latest research...", "Retrieving publications...", "Loading articles..."],
+                    loop: true,
+                    typeSpeed: 80,
+                    backSpeed: 40
+                });
+            }
+        });
+
+        // Fetch Publications Logic
+        async function fetchPublications() {
           const backendUrl = 'https://us-central1-dotted-tube-348605.cloudfunctions.net/get-scholar-api/publications'; 
           
           try {
               console.log("Attempting to fetch publications from:", backendUrl);
               const response = await fetch(backendUrl);
-  
               if (!response.ok) {
-                  // If the HTTP response status is not 2xx, throw an error
-                  const errorText = await response.text(); // Get more details if available
+                  const errorText = await response.text();
                   throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
               }
-  
               const data = await response.json();
-              console.log("Received data from API:", data); // Log the full response for debugging
-  
-              // The API returns a direct array of publications
               const publications = Array.isArray(data) ? data : []; 
-  
               let publicationsList = '';
               let index = 1;
-  
               if (publications.length === 0) {
                   publicationsList = '<li>No publications found.</li>';
               } else {
                   publications.forEach(pub => {
-                      // Access properties directly from the 'pub' object, as stored in Firestore
                       const title = pub.title || 'No title';
-                      const citationLink = pub.citationLink ? (
-                                                                pub.citationLink.startsWith('/') ?
-                                                                'https://scholar.google.com' + pub.citationLink :
-                                                                pub.citationLink
-                                                              ) : '#';
+                      const citationLink = pub.citationLink ? (pub.citationLink.startsWith('/') ? 'https://scholar.google.com' + pub.citationLink : pub.citationLink) : '#';
                       const link = pub.link || citationLink ; 
                       const journal = pub.journal || 'Unknown journal';
-                      const year = pub.year || 'Unknown year'; // Including the year
+                      const year = pub.year || 'Unknown year'; 
                       const citations = pub.citations || 0; 
-                  
-                      publicationsList += `<li>
-                          <strong>${index}. <a href="${link}" target="_blank">${title}</a></strong><br>
-                          <span>${year}</span><br>
-                          <span>${journal}</span><br>
-                          <span>Citations: ${citations > 0 ? `<a href="${citationLink}" target="_blank">${citations}</a>` : 'No citations'}</span>
-                      </li>`;
+                      
+                      publicationsList += `
+                        <li class="border-b border-gray-100 pb-4 last:border-0 hover:bg-slate-50 p-2 rounded transition-colors">
+                            <a href="${link}" target="_blank" class="text-lg font-bold text-primary hover:underline block mb-1">${index}. ${title}</a>
+                            <div class="text-sm text-gray-500">
+                                <span class="font-semibold text-gray-700">${journal}</span> &bull; <span class="bg-gray-100 px-2 py-0.5 rounded text-xs">${year}</span>
+                            </div>
+                            <div class="text-xs text-gray-400 mt-1">
+                                Citations: ${citations > 0 ? `<a href="${citationLink}" target="_blank" class="text-primary font-bold hover:underline">${citations}</a>` : 'No citations'}
+                            </div>
+                        </li>`;
                       index++;
                   });
               }
-              
               document.getElementById('publications-list').innerHTML = publicationsList;
-              
-              // Clean up Typed.js instance after content is loaded
               if (window.loadingTypedInstance) {
                   window.loadingTypedInstance.destroy();
                   const loadingElement = document.querySelector('.loading');
-                  if (loadingElement) {
-                      loadingElement.textContent = ''; // Clear loading text
-                  }
+                  if (loadingElement) loadingElement.textContent = ''; 
               }
-  
           } catch (error) {
               console.error('Error fetching publications:', error);
-              document.getElementById('publications-list').innerHTML = '<li>Error loading publications. Please try again later.</li>';
-              
-              // Clean up Typed.js on error too
-              if (window.loadingTypedInstance) {
-                  window.loadingTypedInstance.destroy();
-                  const loadingElement = document.querySelector('.loading');
-                  if (loadingElement) {
-                      loadingElement.textContent = 'Failed to load publications.'; // Indicate failure
-                  }
-              }
+              document.getElementById('publications-list').innerHTML = '<li class="text-red-500">Error loading publications. Please try again later.</li>';
+              if (window.loadingTypedInstance) window.loadingTypedInstance.destroy();
           }
-      }
-  
-      // Call fetchPublications when the window has fully loaded
-      window.onload = fetchPublications;
-  
-  </script>
-  
-
-  <!-- Open Graph-->
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Bharath Reddy K | Remote Sensing and GIS Data Engineer" />
-  <meta property="og:description" content="Remote Sensing and GIS Data Engineer" />
-  <meta property="og:url" content="https://bharathk113.github.io/" />
-  <meta property="og:site_name" content="Bharath Reddy K | Remote Sensing and GIS Data Engineer" />
-  <meta property="article:publisher" content="https://bharathk113.github.io/" />
-  <meta property="og:image" content="https://bharathk113.github.io/examples/preview.JPG" />
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@bharathk_113" />
-  <meta name="twitter:title" content="Researcher | Developer | Explorer" />
-  <meta name="twitter:description" content="Remote Sensing and GIS Data Engineer" />
-  <meta name="twitter:url" content="https://twitter.com/bharathk_113" />
-  <meta name="author" content="Bharath Reddy K" />
-  <meta name="description" content="Remote Sensing and GIS Data Engineer with a passion for deriving information products using Earth Observation Data." />
-  <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicon/apple-icon-57x57.png" />
-  <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicon/apple-icon-60x60.png" />
-  <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicon/apple-icon-72x72.png" />
-  <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicon/apple-icon-76x76.png" />
-  <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicon/apple-icon-114x114.png" />
-  <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicon/apple-icon-120x120.png" />
-  <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicon/apple-icon-144x144.png" />
-  <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicon/apple-icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicon/apple-icon-180x180.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon/android-icon-192x192.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/favicon/favicon-96x96.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon/favicon-16x16.png" />
-  <link rel="manifest" href="/assets/img/favicon/manifest.json" />
-  <meta name="msapplication-TileColor" content="#ffffff" />
-  <meta name="msapplication-TileImage" content="/assets/img/favicon/ms-icon-144x144.png" />
-  <meta name="theme-color" content="#ffffff" />
-  <meta name="robots" content="index, follow" />
-  <!-- Google Site Verification for indexing -->
-  <meta name="google-site-verification" content="_qxK8tePiU2fhnwlwnJ7pkDFnj1k2EiKq_cYGy1Cb84" />
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <style media="screen">
-    model-viewer{
-      width: 100%;
-      height: 250px;
-      margin: 0 auto;
-    }
-  </style>
-  <style>
-    /* Chatbot Styles */
-    .chat-bubble {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      /* Using your site's theme color */
-      background-color: #004d40; 
-      color: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 1000;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .chat-popup {
-      /* Hidden by default */
-      display: none; 
-      position: fixed;
-      bottom: 100px;
-      right: 25px;
-      width: 350px;
-      max-width: 90%;
-      height: 450px;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      z-index: 1001;
-      /* Use flex to structure the popup */
-      flex-direction: column;
-    }
-
-    .chat-header {
-      background-color: #004d40; /* Theme color */
-      color: white;
-      padding: 15px;
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-    }
-
-    .chat-close {
-      cursor: pointer;
-      font-size: 20px;
-    }
-
-    .chat-messages {
-      flex-grow: 1;
-      padding: 15px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      background-color: #f9f9f9;
-    }
-
-    .message {
-      padding: 10px 15px;
-      border-radius: 18px;
-      max-width: 80%;
-      line-height: 1.4;
-      word-wrap: break-word;
-    }
-
-    .user-message {
-      background-color: #e1e1e1;
-      color: black;
-      align-self: flex-end;
-      border-bottom-right-radius: 5px;
-    }
-
-    .bot-message {
-      background-color: #00796b; /* Theme color */
-      color: white;
-      align-self: flex-start;
-      border-bottom-left-radius: 5px;
-    }
-
-    .chat-input-area {
-      display: flex;
-      padding: 15px;
-      border-top: 1px solid #ddd;
-      background-color: #fff;
-    }
-
-    #chat-input {
-      flex-grow: 1;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 8px;
-      margin-right: 10px;
-      box-sizing: border-box; 
-    }
-
-    #chat-send {
-      background-color: #004d40;
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    #chat-send:hover {
-      background-color: #00796b;
-    }
-    .typing-indicator {
-        display: flex;
-        align-items: center;
-        padding: 10px 15px;
-        border-radius: 18px;
-        background-color: #00796b; /* Bot message color */
-        align-self: flex-start;
-        border-bottom-left-radius: 5px;
-        margin: 5px 0;
-      }
-
-      .typing-dot {
-        width: 8px;
-        height: 8px;
-        background-color: white;
-        border-radius: 50%;
-        margin: 0 3px;
-        /* Animation: name, duration, iteration-count, timing-function */
-        animation: bounce 1.4s infinite ease-in-out both;
-      }
-
-      /* Stagger the animation delay for each dot */
-      .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-      .typing-dot:nth-child(2) { animation-delay: -0.16s; }
-      /* .typing-dot:nth-child(3) has no delay */
-
-      @keyframes bounce {
-        0%, 80%, 100% {
-          transform: scale(0);
         }
-        40% {
-          transform: scale(1.0);
-        }
-      }
-    
-  </style>
-</head>
+        window.onload = fetchPublications;
+    </script>
 
-<body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGZH8HT"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-
-  <!-- Navigation Menu-->
-  <!-- Nav class 1 -->
-  <nav class="hide-on-small-only">
-    <ul class="side-nav fixed section table-of-contents">
-
-      <li class="logo">
-        <a id="logo-container" aria-label="Navigate to the beginning of the page" href="#intro"
-          class="brand-logo grey-blue-text">
-          <img src="/assets/img/passport-new.jpg" class="circle img-responsive profile-pic" alt="avatar">
-        </a>
-      </li>
-
-      <li class="bold">
-        <a aria-label="Navigate to the About section" href="#about" class="waves-effect waves-dark teal-text"><i
-            class="mdi-social-person small"></i><span>About</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Navigate to the Experience section" href="#experience"
-          class="waves-effect waves-dark teal-text"><i
-            class="mdi-action-trending-up small"></i><span>Experience</span></a>
-      </li>
-
-      <li class="bold">
-        <!-- mdi-av-web small
-             mdi-av-my-library-books small-->
-        <a aria-label="Navigate to the Projects section" href="#projects" class="waves-effect waves-dark teal-text"><i
-            class="mdi-action-subject small"></i><span>Projects</span></a>
-      </li>
-
-      <li class="bold">
-        <!--
-        ICONS:
-        mdi-action-assessment
-        mdi-social-poll
-        mdi-av-equalizer
-        -->
-        <a aria-label="Navigate to the Skills section" href="#skills" class="waves-effect waves-dark teal-text"><i
-            class="mdi-action-assessment small"></i><span>Skills</span></a>
-      </li>
-
-      <li class="bold">
-        <!--
-        ICONS:
-        -->
-        <a aria-label="Navigate to the Education section" href="#education" class="waves-effect waves-dark teal-text"><i
-            class="mdi-social-school small"></i><span>Education</span></a>
-      </li>
-      <li class="bold">
-        <!--
-        ICONS:
-        -->
-        <a aria-label="Navigate to the Publications section" href="#publications" class="waves-effect waves-dark teal-text"><i
-            class="mdi-av-my-library-books small"></i><span>Publications</span></a>
-      </li>
-      <li class="bold">
-        <!--
-        ICONS:
-        -->
-        <a aria-label="Navigate to the Achievements section" href="#achievements" class="waves-effect waves-dark teal-text"><i
-            class="mdi-image-assistant-photo small"></i><span>Achievements</span></a>
-      </li>
-      <li class="bold">
-        <!--
-        1. mdi-communication-contacts
-        2. mdi-content-mail
-        3. mdi-communication-email
-        -->
-        <a aria-label="Navigate to the Contact section" href="#contact" class="waves-effect waves-dark teal-text"><i
-            class="mdi-content-mail small"></i><span>Contact</span></a>
-      </li>
-
-      <li class="bold">
-        <!--
-        ICONS:
-        1. mdi-action-description
-        2. mdi-file-folder
-        3. mdi-file-folder-open
-        4. mdi-file-attachment
-        5. mdi-file-folder-shared
-        -->
-        <!-- <a aria-label="Open Bharath's resume in a new tab" href="#resume" target="_blank"
-          onclick="window.open('https://drive.google.com/file/d/1vYi-bMyIsZPve0x_clxY8xsDtiHiOMd3/view?usp=sharing')"
-          class="waves-effect waves-dark teal-text"><i class="mdi-file-folder-open small"></i><span>Resume</span></a> -->
-        <a aria-label="Open Bharath's resume in a new tab" href="https://1drv.ms/b/s!AjDDjfn8gzmqqkYuxyKaf2sVNdc-" target="_blank"
-        class="waves-effect waves-dark teal-text"><i class="mdi-file-folder-open small"></i><span>Resume</span></a>
-      </li>
-    </ul>
-  </nav>
-
-  <!-- Nav class 2 -->
-  <nav class="hide-on-large only trigger z-depth-1">
-    <a aria-label="Toggle visibility of the mobile navbar" href="#" data-activates="slide-out"
-      class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-    <div class="name-title">
-      <a id="name" aria-label="Navigate to the beginning of the page" href="#" class="teal-text">Bharath Reddy K</a><span class="black-text">Remote Sensing and GIS Data Engineer</span>
-    </div>
-  </nav>
-
-  <!-- Nav class 3 -->
-  <nav class="hide-on-large only">
-    <ul id="slide-out" class="side-nav">
-      <li class="bold">
-        <a aria-label="Navigate to the About section" href="#about" class="waves-effect waves-dark teal-text"><i
-            class="mdi-social-person small"></i><span>About</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Navigate to the Experience section" href="#experience"
-          class="waves-effect waves-dark teal-text"><i
-            class="mdi-action-trending-up small"></i><span>Experience</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Navigate to the Projects section" href="#projects" class="waves-effect waves-dark teal-text"><i
-            class="mdi-action-subject small"></i><span>Projects</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Navigate to the Skills section" href="#skills" class="waves-effect waves-dark teal-text"><i
-            class="mdi-action-assessment small"></i><span>Skills</span></a>
-      </li>
-
-      <li class="bold">
-        <a aria-label="Navigate to the Education section" href="#education" class="waves-effect waves-dark teal-text"><i
-            class="mdi-social-school small"></i><span>Education</span></a>
-      </li>
-      <li class="bold">
-        <!--
-        ICONS:
-        -->
-        <a aria-label="Navigate to the Publications section" href="#publications" class="waves-effect waves-dark teal-text"><i
-            class="mdi-av-my-library-books small"></i><span>Publications</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Navigate to the Achievements section" href="#achievements" class="waves-effect waves-dark teal-text"><i
-            class="mdi-image-assistant-photo small"></i><span>Achievements</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Navigate to the Contact section" href="#contact" class="waves-effect waves-dark teal-text"><i
-            class="mdi-content-mail small"></i><span>Contact</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Open Bharath's Resume in a new tab"
-          href="https://1drv.ms/b/s!AjDDjfn8gzmqqkYuxyKaf2sVNdc-" target="_blank"
-          class="waves-effect waves-dark teal-text"><i class="mdi-file-folder-open small"></i><span>Resume</span></a>
-      </li>
-    </ul>
-  </nav>
-
-  <!-- Main Content-->
-  <main>
-    <!-- First Section: Heading lines and image -->
-    <section id="intro" class="section scrollspy full-height">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="col-md-9">
-          <div class="content section-padding valign" style="margin-left: 10%; margin-top: 50px;">
-            <div class="caption">
-              <h2>Hi, I'm <span class="teal">Bharath Reddy K.</span></h2>
-              <h5 style="color:#fff">A <span class="typing" style="font-weight: 300; color:#004d40"></span></h5>
-              <!-- <h5 style="color:#00796b">A <span class="typing" style="font-weight: 300; color:#fff"></span></h5> -->
-              <h5> An ambitious, self-motivated and passionate <b>Remote Sensing Data Engineer</b> with a curious mind who enjoys solving complex and challenging real-world problems using Remote Sensing and Geo-spatial technologies.</h5>
-            </div>
-            <div class="social">
-              <a href="http://linkedin.com/in/bharath-reddy-k" target="_blank">
-                <button class="icon-btn linkedin">
-                  <i class="fa fa-linkedin"></i>
-                </button>
-              </a>
-              <a href="https://github.com/bharathk113/" target="_blank">
-                <button class="icon-btn github">
-                  <i class="fa fa-github"></i>
-                </button>
-              </a>
-
-              <!-- <a href="https://angel.co/u/Bharath_bhogayata" target="_blank">
-                <button class="icon-btn angellist">
-                  <i class="fa fa-angellist"></i>
-                </button>
-              </a> -->
-
-              <!-- <a href="http://linkedin.com/in/Bharathbhogayata" target="_blank">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-
-                  </span>
-              </a> -->
-            </div>
-            <div class='buttons'>
-              <a href="#about" class="readme">Read More</a>
-              <a href="#contact" class="contactme">Contact Me</a>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="row">
-          <div class="col my-2"> -->
-            <model-viewer src="/assets/3dobjs/landscape-1.gltf" ar ar-scale= ar-modes="webxr scene-viewer quick-look" environment-image="neutral" auto-rotate camera-controls></model-viewer>
-<!--         <model-viewer src="/assets/3dobjs/landscape-1.gltf" 
-            ar ar-scale 
-            ar-modes="webxr scene-viewer quick-look" 
-            environment-image="neutral" 
-            auto-rotate 
-            camera-controls 
-            style="width: 100vw; height: 100vh; max-width: 100%; display: block; overflow: hidden; touch-action: manipulation;">
-        </model-viewer> -->
-          <!-- </div> -->
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Second Section: About -->
-    <section id="about" class="section scrollspy">
-      <h3 class="page-title white-text teal">About</h3>
-      <div class="container flow-text">
-        <p>
-          Passionate and results-driven Data Scientist with proven expertise in <b>machine learning, statistical analysis, remote sensing, image processing, and geospatial data science</b>. Adept at building scalable solutions for real-world problems in water resources and environmental monitoring.
-        </p>
-        
-      </div>
-    </section>
-
-
-    <!-- Third Section: Experience -->
-    <section id="experience" class="section scrollspy">
-      <h3 class="page-title white-text teal">Experience</h3>
-      <div class="container">
-
-        <!-- Latest Experience -->
-        <div class="card">
-          <div class="card-content">
-            <div class="row">
-              <div class="col s12 m2">
-                <a href="https://www.nrsc.gov.in/" target="_blank"><img alt="Zhiffy logo"
-                    src="/assets/img/isro-logo-1.png" class="responsive-img center-block" /></a>
-              </div>
-              <!-- <div class="col s12 m10"> -->
-              <div class="col s12 m10">
-                <p>
-                  <span class="card-title"><a href="https://www.nrsc.gov.in/" target="_blank"
-                      class="teal-text hoverline">National Remote Sensing Centre</a></span>
-                </p>
-              </div>
-            </div>
-            <div class="role brown-text text-darken-2">Scientist/Engineer - "SE"</div>
-            <ul>
-              <p>
-                <ul>
-                  <li>Built reliable drought monitoring models used by government agencies.</li>
-                  <li>Designed ETL pipelines with open-source tools.</li>
-                  <li>Implemented advanced image processing workflows.</li>
-                  <li>Automated satellite data processing at scale.</li>
-                  <li>Streamlined data workflows and operational tasks.</li>
-                  <li>Leveraged multi-source geospatial data for insights.</li>
-                  <li>Developed ML models integrating satellite and field data.</li>
-                  <li>Applied data fusion for robust, reliable analytics.</li>
-                </ul>
-              </p>
-            </ul>
-          </div>
-          <div class="card-action">
-            <span>July 2016 onwards | Hyderabad, India</span>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-content">
-            <div class="row">
-              <div class="col s12 m2">
-                <a href="https://www.nrsc.gov.in/aboutus_campus_nrscrc/rrsc_south?language_content_entity=en" target="_blank"><img alt="Zhiffy logo"
-                    src="/assets/img/isro-logo-1.png" class="responsive-img center-block" /></a>
-              </div>
-              <!-- <div class="col s12 m10"> -->
-              <div class="col s12 m10">
-                <p>
-                  <span class="card-title"><a href="https://www.nrsc.gov.in/aboutus_campus_nrscrc/rrsc_south?language_content_entity=en" target="_blank"
-                      class="teal-text hoverline">Regional Remote Sensing Centre</a></span>
-                </p>
-              </div>
-            </div>
-            <div class="role brown-text text-darken-2">Project Trainee</div>
-            <ul>
-              <li>
-                As a project trainee, I worked towards the application of object-based classification techniques for the identification of citrus orchards using Remote Sensing and GIS tools. Published and presented the same in a conference
-              </li>
-            </ul>
-          </div>
-          <div class="card-action">
-            <span>Januray 2016 - May-2016 | Bangalore, India</span>
-          </div>
-        </div>
-
-
-
-
-      </div>
-    </section>
-
-    <!-- Fourth Section: Projects -->
-    <section id="projects" class="section scrollspy">
-      <h3 class="page-title white-text teal">Projects</h3>
-      <div class="container">
-        <div class="row">
-
-          <div class="col s12 m6 l6">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="WBIS" src="/assets/img/bhuvan-wbis.PNG" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Water Bodies Information System<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  Multi satellite and sensor based water bodies surface water spread information system for India.
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title grey-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li><b>Tools:</b> GDAL, PostgreSQL, PostGIS, Python</li>
-                  <li>Developed and integrated algorithms for extraction of water spread area derived from new satellite sensors and built a robust Geospatial database of inland waterbodies.</li>
-                  <li>Advanced image processing techniques such as machinelearning, object-based techniques, etc., are employed to extract water spread area in near real-time from Optical and Synthetic Aperture Radar data derived from Copernicus missions such as Sentinel-1,2 & Indian satellites such as Resourcesat-1, 2, 2A, RISAT-1 etc.</li>
-                  <li>This database is currently being used for water assessment, inland fisheries potential, hydrological drought, etc. and is made available to the public</li>
-
-
-
-                </ul>
-                <div class="card-action">
-                  <a aria-label="Visit " href="https://bhuvan-wbis.nrsc.gov.in/" target="_blank" data-position="top"
-                    data-tooltip="View Online"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-external-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col s12 m6 l6">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="quiz app" src="/assets/img/hydas.png" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Hydrological Drought Assessment<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  Hydrological Drought Assessment is a National Project with the objectives to characterize spatiotemporal variability of hydrological drought, provide hydrological drought indices based on geospatial data, hydrological model outputs and observational/field data.
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title grey-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li><b>Tools:</b> GDAL, Python (scipy, scikit-learn, skimage), PostgreSQL, PostGIS</li>
-                  <li>Developed multiple hydrological drought indices suitable for the Indian region</li>
-                  <!-- <li>Play Quiz and see the leaderboard</li> -->
-
-                </ul>
-                <div class="card-action">
-                  <a aria-label="Visit " href="https://bhuvan.nrsc.gov.in/nhp/#/webgis-drought/map" target="_blank" data-position="top"
-                    data-tooltip="View Online"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-external-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 1. Django Project -->
-          <!-- <div class="col s12 m6 l6">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="django web app" src="/assets/img/project-library-logo.png" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Local Library Web-App<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  A web-app that creates an online catalog for a small local library, where users can browse available books and manage their accounts.
-                </p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li><b>Tools:</b> HTML, CSS, Bootstrap, SQLite, Django, Heroku</li>
-                  <li>Users can view list and detail information for books and authors.</li>
-                  <li>Admin users can create and manage models.</li>
-                  <li>Librarians can renew reserved books.</li>
-
-                </ul>
-                <div class="card-action">
-                  <a aria-label="Visit " href="https://django-local-lib.herokuapp.com" target="_blank" data-position="top"
-                    data-tooltip="View Online"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-external-link"></i></a>
-                  <a aria-label="Visit the GitHub repo for  project" href="https://github.com/varadbhogayata/django-local-library"
-                    target="_blank" data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-github"></i></a>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
-          <!-- Flask Project -->
-          <div class="col s12 m6 l6">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="Screenshot of Bhuvan" src="/assets/img/bhuvan-2d.PNG"
-                style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Ortho-mosaic generation for India<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  A 2.5m resolution seamless ortho rectified image tiles generation using Indian Remote Sensing satellites data.
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title teal-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li><b>Tools:</b> PCI GXL, PCI Geomatica, ERDAS Imagine, Python</li>
-                  <li>Orthorectified base layers for Indian Geoportal were generated using Indian data</li>
-                  <li>Mainly responsible for ortho-rectification, pan sharpening and synthesizing the blue band for the data.</li>
-
-
-                </ul>
-                <div class="card-action">
-                  <a aria-label="Visit Blog website" href="https://bhuvan.nrsc.gov.in/" target="_blank" data-position="top"
-                    data-tooltip="View Online"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-external-link"></i></a>
-                  <!-- <a aria-label="Visit the GitHub repo for  project" href="https://github.com/varadbhogayata/flask-blog"
-                    target="_blank" data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-github"></i></a> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- VQA -->
-          <div class="col s12 m6 l6">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="Screenshot of  TWRIS" src="/assets/img/twris.PNG" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Telangana Water Resources Inforamtion System<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  A comprehensive geo-database of water related data for Telangana State in India.
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title teal-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li><b>Tools:</b> Python, PostGIS, PostgreSQL</li>
-                  <li>Developed a technique for the identification of cascades of lakes/ponds using GIS and Remote Sensing.</li>
-                  <li> Developed a tool to delineate the lake catchments using the D8 Flow direction algorithm is developed.</li>
-
-                </ul>
-                <div class="card-action">
-                  <a aria-label="Visit the GitHub repo for  project"
-                    href="https://bhuvan-app1.nrsc.gov.in/twris/twris.php" target="_blank"
-                    data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-external-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Video Summarizer -->
-          <div class="col s12 m6 l6">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="Drone" src="/assets/img/UAV.jpg" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">UAV Applications for Water<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  Capacity estimation of minor irrigation tanks using UAV and satellite based remote sensing.
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title brown-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li>A novel approach was proposed and published to use images acquired from the Unmanned Aerial Vehicle (UAV) platform instead of stereo images from other sources/platforms for generating Elevation Area Capacity (EAC) relationship curves</li>
-                  <li>These EAC curves in combination with the near real-time water spread area obtained from satellite remote sensing were used to estimate the volume of water available in a tank</li>
-
-                </ul>
-                <!-- TODO: UPLOAD THIS PROJECT ON GITHUB -->
-                <div class="card-action">
-                  <a aria-label="Checkout the paper" href="https://link.springer.com/article/10.1007/s12524-020-01164-x"
-                    target="_blank" data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-external-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Image Generator -->
-          <div class="col s12 m6 l6">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="Ortho-errors" src="/assets/img/accuracy-ortho.jpg" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Automatic geometric accuracy evaluator<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  Orthorectified data geometric accuracy evaluator developed for quick QC.
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title brown-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li> Fourier phase correlation with Log - Polar Transform along with Template matching using normalized cross-correlation is used in the process</li>
-                  <!-- <li>Calculated difference in PCA was less than 10%, depicting the successful generation of an image by
-                    the generator.</li> -->
-
-                </ul>
-                <!-- <div class="card-action">
-                  <a aria-label="Visit the GitHub repo for  project" href="https://github.com/bharathk113/"
-                    target="_blank" data-position="top" data-tooltip="View Source"
-                    class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-                      class="fa fa-github"></i></a>
-                </div> -->
-              </div>
-            </div>
-          </div>
-
-          <!-- Head Counting System -->
-          <div class="col s12 m6 l6">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img alt="Screenshot of  web app" src="/assets/img/otherprojects.jpg" style="height: 100%; width: 100%" class="activator" />
-              </div>
-              <div class="card-content">
-                <span class="card-title activator teal-text hoverline">Other Projects<i
-                    class="mdi-navigation-more-vert right"></i></span>
-                <p>
-                  Check details for other short term projects.
-                </p>
-              </div>
-              <div class="card-reveal">
-                <!-- TODO: change this -- only close button -->
-                <!-- <span class="card-title brown-text">Accomplishments<i class="mdi-navigation-close right"></i></span> -->
-                <span class="card-title brown-text"><small>Accomplishments</small><i
-                    class="mdi-navigation-close right"></i></span>
-                <ul>
-                  <li>Developed a classification algorithm using machine learning methods such as Quadratic Discriminant Analysis for the extraction of paddy grown regions from the Synthetic Aperture Radar data.</li>
-                  <li>Developed optimal image pair (Pan chromatic-Pan & Multispectral-MS) identification tool from a lot of Pan and MS imagery which has criteria of minimizing the number of gaps that are likely to occur in the final pan-sharpened images.</li>
-
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <!-- ************* -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Fifth Section: Skills -->
-    <section id="skills" class="section scrollspy">
-      <h3 class="page-title white-text teal">Skills</h3>
-      <div class="container">
-        <!-- Languages and Databases -->
-        <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Languages and Databases</h4>
-            <div class="row text-center">
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/python-logo-1-300x300.jpg" class="responsive-img" />Python
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/postgresql.png" class="responsive-img" />PostgreSQL
-              </div>
-              <!-- <div class="col s4 m2">
-                <img alt="" src="/assets/img/css3-300x300.jpg" class="responsive-img" />CSS3
-              </div> -->
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/postgis.png" class="responsive-img" />PostGIS
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/C.png" class="responsive-img" />C
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/matlab.png" class="responsive-img" />Matlab
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Libraries</h4>
-            <div class="row text-center">
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/numpy-logo-1-500x500.jpg" class="responsive-img" />NumPy
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/opencv-logo-1-500x500.jpg" class="responsive-img" />OpenCV
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/sk-learn-logo-1-500x500.jpg" class="responsive-img" />scikit-learn
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/matplotlib-logo-1-500x500.jpg" class="responsive-img" />matplotlib
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/scipy.png" class="responsive-img" />scipy
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/numba.jpg" class="responsive-img" />numba
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/gdal.png" class="responsive-img" />GDAL & OGR
-              </div>
-              <!-- <div class="col s4 m2">
-                <img alt="" src="/assets/img/pandas-logo-2-500x500.jpg" class="responsive-img" />OGR
-              </div> -->
-
-            </div>
-          </div>
-        </div>
-
-        <!-- Frameworks -->
-        <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Geospatial Softwares</h4>
-            <div class="row text-center">
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/qgis.png" class="responsive-img" />QGIS
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/arcgis.png" class="responsive-img" />ArcGIS
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/erdas.jpg" class="responsive-img" />ERDAS
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/geomatica.png" class="responsive-img" />PCI Geomatica
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/ecognition.jpg" class="responsive-img" />Ecognition
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/otb.jpg" class="responsive-img" />Orfeo Toolbox
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Other -->
-        <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Other</h4>
-            <div class="row text-center">
-
-
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/latex.png" class="responsive-img" />Latex & Beamer
-              </div>
-              <!-- <div class="col s4 m2">
-                <img alt="" src="/assets/img/aws.png" class="responsive-img" />Latex
-              </div> -->
-              <!-- <div class="col s4 m2">
-                <img alt="" src="/assets/img/heroku.png" class="responsive-img" />
-              </div> -->
-            </div>
-          </div>
-        </div>
-
-        <!-- certifications -->
-        <!-- <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Certificates</h4>
-            <div class="row text-left">
-              <div class="container">
-                <div class="row">
-                  <div class="col s12 m6 l6">
-                    <div class="card">
-                      <div class="card-image">
-                        <img src="/assets/img/mooc-machine-learning-coursera-800x500.jpg">
-                      </div>
-                      <div class="card-content">
-                        <span class="card-title teal-text">Machine Learning (Stanford)</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col s12 m6 l6">
-                    <div class="card">
-                      <div class="card-image">
-                        <img src="/assets/img/mooc-algorithms-stanford-2-800x500.jpg">
-                      </div>
-                      <div class="card-content">
-                        <span class="card-title teal-text">Algorithms (Stanford)</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-      </div>
-    </section>
-
-    <!-- Seventh Section: Education -->
-    <section id="education" class="section scrollspy">
-      <h3 class="page-title white-text teal">Education</h3>
-      <div class="container">
-        <div class="row">
-          <!-- Education -->
-          <div class="col s12 m6">
-            <div class="card">
-              <div class="card-content">
-                <p>
-                  <span class="card-title"><a href="https://bits-pilani.ac.in/" target="_blank" class="teal-text hoverline">Birla Institute of Technology And Science, Pilani (BITS Pilani)</a></span>
-                </p>
-                <p class="brown-text">Hyderabad, India</p>
-                <p>
-                  <b>Degree: </b>Master of Technology in Data Science & Engineering
-<!--                   <br>
-                  <b>CGPA: </b>3.13/4.33 -->
-                </p>
-
-                <ul>
-                  <p>
-                    <b>Relevant Courseworks:</b>
-                  <ul>
-                    <li>Machine Learning</li>
-                    <li>Natural Language Processing</li>
-                    <li>Deep Learning</li>
-                    <li>Big Data Systems</li>
-                  </ul>
-                  </p>
-
-                </ul>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-content">
-                <p>
-                  <span class="card-title"><a href="https://www.iist.ac.in/" target="_blank" class="teal-text hoverline">Indian Institute of Space Science and Technology</a></span>
-                </p>
-                <p class="brown-text">Trivandrum, Kerala, India</p>
-                <p>
-                  <b>Degree: </b>Bachelor of Technology in Physical Sciences
-                  <!-- <br> -->
-                  <!-- <b>CGPA: </b>4/4 -->
-                </p>
-
-                <ul>
-                  <p>
-                    <b>Relevant Courseworks:</b>
-                  <ul>
-                    <li>Remote Sensing</li>
-                    <li>Geographic Information Systems</li>
-                    <li>Digital Image Processing</li>
-                    <li>Atmospheric Sciences</li>
-                  </ul>
-                  </p>
-
-                </ul>
-              </div>
-            </div>
-
-            
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Eight Section: Publications -->
-   <section id="publications" class="section scrollspy">
-        <h3 class="page-title white-text teal">Publications</h3>
-     <div class="container flow-text">
-        <ul id="publications-list">
-            <h5 style="color:#004d40"><span class="loading" style="font-weight: 300; color:#004d40"></span></h5>
-        </ul>
-     </div>
-    </section>
-    
-    <!-- Eight Section: Publications -->
-<!--     <section id="publications" class="section scrollspy">
-      <h3 class="page-title white-text teal">Technical Reports and Publications</h3>
-      <div class="container flow-text">
-        <li>
-          <b>Capacity estimation of irrigation tanks through remote sensing from UAV platform. </b>
-          2020 <a href="https://doi.org/10.1007/s12524-020-01164-x">https://doi.org/10.1007/s12524-020-01164-x</a>
-          Bharath, K., Hakeem, K.A., Raghavendra, K. et al. J Indian Soc Remote Sens 48, 1403–1411 (2020).
-        </li>
-        <li>
-          <b>Accuracy Assessment and Normalisation of Water Spread Area Estimate from Multi-sensor Satellite Data. </b>
-          2020 <a href="https://doi.org/10.1007/s12524-020-01185-6">https://doi.org/10.1007/s12524-020-01185-6</a>
-          Kompella, S., Bharath, K., Abdul Hakeem, K. et al. J Indian Soc Remote Sens 48, 1601–1611 (2020).
-        </li>
-        <li>
-          <b>Region Growing based Automatic Localized Adaptive Thresholding Algorithm for Water Extraction.</b>
-          2020
-          Internal Report: Algorithm Theoritical Basis Document
-        </li>
-        <li>
-          <b>Standardized Runoﬀ Index Product for Hydrological Drought Assessment.</b>
-          2020
-          Internal Report: Algorithm Theoritical Basis Document (NRSC-RSAA- WRG-WRID-NOV-2020-TR-0001704-V1.0)
-        </li>
-        <li>
-          <b>Standardised Groundwater Index for Hydrological Drought Assessment.</b>
-          2019
-          Internal Report: Algorithm Theoritical Basis Document (NRSC-RSAA- WRG-WRID-SEPT-2019-TR-1661-V1.0)
-        </li>
-        </li>
-        <li>
-          <b>Retrieval of Land Cover Management Practices Information for SWAT Model at a National scale.</b>
-          2019 <a href="https://swat.tamu.edu/media/116376/book-of-abstracts-20190814.pdf">https://swat.tamu.edu/media/116376/book-of-abstracts-20190814.pdf</a>
-          SWAT Conference, 2019, Vienna
-        </li>
-        <li>
-          <b>Mapping of River Course Changes during Last Two Decades in Yamuna River near Mathura and Vrindavan.</b>
-          2018 Report for a user project (NRSC-RSAA-WRG-WRID-MARCH2018- TR.NO-1122.1.0)
-        </li>
-        <li>
-          <b>Object based classiﬁcation techniques for citrus orchards. </b>
-          2016  <a href="https://isgindia.org/JOG/abstracts/APR-2016/pap011.pdf">https://isgindia.org/JOG/abstracts/APR-2016/pap011.pdf</a>
-          Kadapala Bharath Kumar Reddy , J. Mohammed Ahamed , R. Hebbara , Uday Raj and Rama Rao. Journal of Geomatics Vol 10 No. 1 April 2016.
-        </li>
-        <li>
-          <b>Applications of Remote Sensing in site suitability analysis for water harvesting structures. </b>
-          2019
-          Internal Report
-        </li>
-        <li>
-          <b>Performance Assessment of Tank Irrigation System using Remote Sensing. </b>
-          2018
-          Anurag Mishra, Bharath Reddy Kadapala, Aloshree Choudhury, et. al.
-          International Congress on Cartography(INCA-38), 2018.
-        </li> -->
-        <!-- <p>
-          Looking for an opportunity to work in a challenging position combining my skills in Software Engineering, which provides professional development, interesting experiences and personal growth.
-        </p> -->
-        <!-- <p>
-          Another Paragraph
-        </p>  -->
-        <!-- <p>
-        <strong>Current Focus</strong>:&nbsp;<a aria-label="Navigate to the Inclusive Design Patterns homepage"
-          href="https://www.smashingmagazine.com/inclusive-design-patterns/">Accessibility</a>&nbsp;//&nbsp;<a
-          aria-label="Navigate to the Full Stack React homepage"
-          href="https://www.fullstackreact.com/">React</a>&nbsp;//&nbsp;<a
-          aria-label='Navigate to the article "Scalable CSS"'
-          href="https://mrmrs.github.io/writing/2016/03/24/scalable-css/">Design Systems</a>
-        </p> -->
-      </div>
-    </section>
-    <!-- Nineth Section: Publications -->
-    <section id="achievements" class="section scrollspy">
-      <h3 class="page-title white-text teal">Achievements</h3>
-      <div class="container flow-text">
-        <li>
-          <b>Student Merit Scholarship</b>
-          <p>
-            Awarded scholarship for 8 consecutive semesters by Department of Space, Government of India. 120 out of 150,000 meritorious applicants received this grant.
-          </p>
-        </li>
-        <li>
-          <b>National Water Mission Award for 2019 for Telangana Water Resources Information System</b>
-          <p>
-            Telangana Water Resources Information System (TWRIS), a project in was I was involved directly as a GIS data analyst was awarded with 2nd Prize under the category “Comprehensive Water Data Base in Public Domain”.
-          </p>
-        </li>
-        <li>
-          <b>Brilliant grade</b>
-          <p>
-            Rated as Brilliant (Grade: 10/10) for my contributions to the organization for the years 2024, 22, 21 & 20
-          </p>
-        </li>
-        <li>
-          <b>Outstanding grade</b>
-          <p>
-            Rated as Outstanding (Grade: 9/10) for my contributions to the organization for the year 2023, 19, 18, 17 & 16
-          </p>
-        </li>
-        <!-- <li>
-          <b>Mapping of River Course Changes during Last Two Decades in Yamuna River near Mathura and Vrindavan.</b>
-          2018 Report for a user project (NRSC-RSAA-WRG-WRID-MARCH2018- TR.NO-1122.1.0)
-        </li>
-        <li>
-          <b>Object based classiﬁcation techniques for citrus orchards. </b>
-          2016  <a href="https://isgindia.org/JOG/abstracts/APR-2016/pap011.pdf">https://isgindia.org/JOG/abstracts/APR-2016/pap011.pdf</a>
-          Kadapala Bharath Kumar Reddy , J. Mohammed Ahamed , R. Hebbara , Uday Raj and Rama Rao. Journal of Geomatics Vol 10 No. 1 April 2016.
-        </li>
-        <li>
-          <b>Applications of Remote Sensing in site suitability analysis for water harvesting structures. </b>
-          2019
-          Internal Report
-        </li>
-        <li>
-          <b>Performance Assessment of Tank Irrigation System using Remote Sensing. </b>
-          2018
-          Anurag Mishra, Bharath Reddy Kadapala, Aloshree Choudhury, et. al.
-          International Congress on Cartography(INCA-38), 2018.
-        </li> -->
-        <!-- <p>
-          Looking for an opportunity to work in a challenging position combining my skills in Software Engineering, which provides professional development, interesting experiences and personal growth.
-        </p> -->
-        <!-- <p>
-          Another Paragraph
-        </p>  -->
-        <!-- <p>
-        <strong>Current Focus</strong>:&nbsp;<a aria-label="Navigate to the Inclusive Design Patterns homepage"
-          href="https://www.smashingmagazine.com/inclusive-design-patterns/">Accessibility</a>&nbsp;//&nbsp;<a
-          aria-label="Navigate to the Full Stack React homepage"
-          href="https://www.fullstackreact.com/">React</a>&nbsp;//&nbsp;<a
-          aria-label='Navigate to the article "Scalable CSS"'
-          href="https://mrmrs.github.io/writing/2016/03/24/scalable-css/">Design Systems</a>
-        </p> -->
-      </div>
-    </section>
-    <!-- Tenth Section: Contact -->
-    <section id="contact" class="section scrollspy full-height">
-      <h3 class="page-title white-text teal">Contact</h3>
-      <div class="container">
-        <p>
-          <a aria-label="Email Bharath" href="mailto:bharathkadapala@outlook.com" target="_blank" data-position="top"
-            data-tooltip="Email Bharath" class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-              class="fa fa-envelope"></i><a aria-label="Email Bharath" href="mailto:bharathkadapala@outlook.com"
-              class="hoverline">bharathkadapala@outlook.com</a></a>
-        </p>
-        <p>
-          <a aria-label="View Bharath on GitHub" href="http://github.com/bharathk113" target="_blank"
-            data-position="top" data-tooltip="View Bharath on GitHub"
-            class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i class="fa fa-github"></i><a
-              aria-label="Bharath on Github" href="http://github.com/bharathk113" class="hoverline"
-              target="_blank">github.com/bharathk113</a></a>
-        </p>
-        <p>
-          <a aria-label="View Bharath on LinkedIn" href="http://linkedin.com/in/bharath-reddy-k" target="_blank"
-            data-position="top" data-tooltip="View Bharath on LinkedIn"
-            class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-              class="fa fa-linkedin"></i><a aria-label="Bharath on LinkedIn" href="http://linkedin.com/in/bharath-reddy-k"
-              class="hoverline" target="_blank">linkedin.com/in/bharath-reddy-k</a></a>
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <!-- typed.js -->
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script type="text/javascript">
-    var typed = new Typed('.typing',{
-      strings: ["Researcher", "Developer", "Fast Learner"],
-      loop: true,
-      typeSpeed: 80,
-      backSpeed: 40
-    });
-  </script>
-  
-
-
-  <!-- jQuery-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-  <!-- Materialize - Compiled and minified JavaScript-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
-  <script>
-    // Materialize - Initializers
-    $(document).ready(function () {
-      $(".scrollspy").scrollSpy()
-      // Initialize collapse button
-      $(".button-collapse").sideNav({
-        menuWidth: 190, // Default is 240
-        edge: "left", // Choose the horizontal origin
-        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-      })
-    })
-  </script>
-  <div id="chat-bubble" class="chat-bubble">
-      <i class="fa fa-comment"></i>
-    </div>
-
-    <div id="chat-popup" class="chat-popup">
-      <div class="chat-header">
-        <span>Chat with my AI assistant</span>
-        <span id="chat-close" class="chat-close">&times;</span>
-      </div>
-      <div id="chat-messages" class="chat-messages">
-        <div class="message bot-message">
-          Hi there! I'm an AI assistant. Feel free to ask me about Bharath's work.
-        </div>
-      </div>
-      <div class="chat-input-area">
-        <input type="text" id="chat-input" placeholder="Type a message...">
-        <button id="chat-send">Send</button>
-      </div>
-    </div>
-    <script src="context.js"></script>
     <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // --- Chatbot Elements ---
-    const chatBubble = document.getElementById('chat-bubble');
-    const chatPopup = document.getElementById('chat-popup');
-    const chatClose = document.getElementById('chat-close');
-    const chatSend = document.getElementById('chat-send');
-    const chatInput = document.getElementById('chat-input');
-    const chatMessages = document.getElementById('chat-messages');
+        // Inline Context for Chatbot to include NEW projects
+        const MY_CONTEXT = {
+            about_me: "Passionate and results-driven Data Scientist with proven expertise in machine learning, statistical analysis, remote sensing, image processing, and geospatial data science. Adept at building scalable solutions for real-world problems in water resources and environmental monitoring. Currently Scientist/Engineer at NRSC (ISRO).",
+            experience: [
+                { company: "National Remote Sensing Centre (ISRO)", role: "Scientist/Engineer", years: "2016-Present", details: "Drought monitoring models, ETL pipelines, ML integration." },
+                { company: "Regional Remote Sensing Centre", role: "Project Trainee", years: "2016", details: "Object-based classification for citrus orchards." }
+            ],
+            projects: [
+                { name: "SAR SegFormer", description: "Deep learning based semantic segmentation of Sentinel-1 SAR data." },
+                { name: "SRI Explorer", description: "Standardized Runoff Index web application." },
+                { name: "SGWI Explorer", description: "Standardized Groundwater Index geospatial dashboard." },
+                { name: "Water Bodies Information System", description: "Surface water spread info system." },
+                { name: "Hydrological Drought Assessment", description: "Spatiotemporal drought variability indices." },
+                { name: "Ortho-mosaic Generation", description: "Seamless ortho rectified image tiles generation." },
+                { name: "Telangana Water Resources Info", description: "Geo-database for water data in Telangana." },
+                { name: "UAV Applications for Water", description: "Capacity estimation of tanks using UAV." },
+                { name: "Tappy Bird", description: "Hobby project: Flappy bird clone with global leaderboards." }
+            ],
+            skills: ["Python", "PostgreSQL", "PostGIS", "Machine Learning", "Remote Sensing", "QGIS", "ArcGIS", "Deep Learning", "WebGIS"],
+            education: [
+                { school: "BITS Pilani", degree: "M.Tech Data Science", details: "ML, NLP, Deep Learning" },
+                { school: "IIST", degree: "B.Tech Physical Sciences", details: "Remote Sensing, GIS" }
+            ],
+            achievements: ["Student Merit Scholarship", "National Water Mission Award (2019)", "Consistently High Performance Ratings"]
+        };
 
-    const NGROK_URL = 'https://evelia-nonmutual-carson.ngrok-free.dev';
+        document.addEventListener("DOMContentLoaded", function() {
+            const chatBubble = document.getElementById('chat-bubble');
+            const chatPopup = document.getElementById('chat-popup');
+            const chatClose = document.getElementById('chat-close');
+            const chatSend = document.getElementById('chat-send');
+            const chatInput = document.getElementById('chat-input');
+            const chatMessages = document.getElementById('chat-messages');
+            const NGROK_URL = 'https://evelia-nonmutual-carson.ngrok-free.dev';
 
-    // --- Event Listeners (Unchanged) ---
-    chatBubble.addEventListener('click', () => {
-      chatPopup.style.display = 'flex';
-      chatBubble.style.display = 'none';
-    });
-    chatClose.addEventListener('click', () => {
-      chatPopup.style.display = 'none';
-      chatBubble.style.display = 'flex';
-    });
-    chatSend.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendMessage();
-      }
-    });
+            // Stop bounce animation on click
+            chatBubble.addEventListener('click', () => {
+                chatPopup.style.display = 'flex';
+                chatBubble.style.display = 'none';
+                chatBubble.classList.remove('animate-bounce');
+            });
 
-    // --- Helper Functions (Unchanged) ---
-    function addMessageToUI(text, sender) {
-      const messageElement = document.createElement('div');
-      messageElement.classList.add('message');
-      messageElement.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
-      messageElement.textContent = text;
-      chatMessages.appendChild(messageElement);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
+            chatClose.addEventListener('click', () => {
+                chatPopup.style.display = 'none';
+                chatBubble.style.display = 'flex';
+            });
 
-    function showTypingIndicator() {
-      if (document.getElementById('typing-indicator')) return;
-      const indicator = document.createElement('div');
-      indicator.id = 'typing-indicator';
-      indicator.classList.add('typing-indicator');
-      indicator.innerHTML = `<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>`;
-      chatMessages.appendChild(indicator);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
+            chatSend.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
 
-    function hideTypingIndicator() {
-      const indicator = document.getElementById('typing-indicator');
-      if (indicator) indicator.remove();
-    }
+            function addMessageToUI(text, sender) {
+                const messageWrapper = document.createElement('div');
+                messageWrapper.className = sender === 'user' ? 'flex justify-end' : 'flex justify-start';
+                
+                const messageBubble = document.createElement('div');
+                if (sender === 'user') {
+                    messageBubble.className = 'bg-primary text-white p-3 rounded-tl-xl rounded-bl-xl rounded-br-xl shadow-sm text-sm max-w-[85%] break-words';
+                } else {
+                    messageBubble.className = 'bg-white text-gray-800 p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl shadow-sm text-sm border border-gray-100 max-w-[85%] break-words';
+                }
+                messageBubble.textContent = text;
+                messageWrapper.appendChild(messageBubble);
+                chatMessages.appendChild(messageWrapper);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
 
-    // --- 💡 NEW "RETRIEVER" (GATEKEEPER) LOGIC 💡 ---
+            function showTypingIndicator() {
+                if (document.getElementById('typing-indicator')) return;
+                const wrapper = document.createElement('div');
+                wrapper.id = 'typing-indicator-wrapper';
+                wrapper.className = 'flex justify-start';
+                const indicator = document.createElement('div');
+                indicator.id = 'typing-indicator';
+                indicator.className = 'bg-white p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl shadow-sm border border-gray-100 flex items-center gap-1 w-16 h-10';
+                indicator.innerHTML = `<div class="typing-dot w-2 h-2 bg-gray-400 rounded-full"></div><div class="typing-dot w-2 h-2 bg-gray-400 rounded-full"></div><div class="typing-dot w-2 h-2 bg-gray-400 rounded-full"></div>`;
+                wrapper.appendChild(indicator);
+                chatMessages.appendChild(wrapper);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
 
-    /**
-     * This function checks the user's question for keywords
-     * and "retrieves" the relevant info from MY_CONTEXT.
-     */
-    function getRelevantContext(message) {
-      const msg = message.toLowerCase();
-      let context = ""; // We will build our context string here
+            function hideTypingIndicator() {
+                const wrapper = document.getElementById('typing-indicator-wrapper');
+                if (wrapper) wrapper.remove();
+            }
 
-      // 1. General Info
-      if (msg.includes('who is') || msg.includes('about you') || msg.includes('about bharath') || msg.includes('tell me about')) {
-        context += "About Bharath: " + MY_CONTEXT.about_me + "\n\n";
-      }
+            function getRelevantContext(message) {
+                const msg = message.toLowerCase();
+                let context = ""; 
+                if (msg.includes('who is') || msg.includes('about you') || msg.includes('about bharath')) {
+                    context += "About Bharath: " + MY_CONTEXT.about_me + "\n\n";
+                }
+                if (msg.includes('project') || msg.includes('work') || msg.includes('portfolio') || msg.includes('segformer') || msg.includes('tappy')) {
+                    context += "Bharath's Projects: " + JSON.stringify(MY_CONTEXT.projects) + "\n\n";
+                }
+                if (msg.includes('paper') || msg.includes('publication') || msg.includes('scholar')) {
+                    context += "Bharath's Publications: " + JSON.stringify(MY_CONTEXT.publications) + "\n\n";
+                }
+                if (msg.includes('skill') || msg.includes('tech') || msg.includes('tool')) {
+                    context += "Bharath's Skills: " + JSON.stringify(MY_CONTEXT.skills) + "\n\n";
+                }
+                if (msg.includes('experience') || msg.includes('job') || msg.includes('isro')) {
+                    context += "Bharath's Experience: " + JSON.stringify(MY_CONTEXT.experience) + "\n\n";
+                }
+                if (msg.includes('education') || msg.includes('college') || msg.includes('degree')) {
+                    context += "Bharath's Education: " + JSON.stringify(MY_CONTEXT.education) + "\n\n";
+                }
+                if (msg.includes('award') || msg.includes('achievement')) {
+                    context += "Bharath's Achievements: " + JSON.stringify(MY_CONTEXT.achievements) + "\n\n";
+                }
+                if (context === "") return null;
+                return context;
+            }
 
-      // 2. Projects
-      if (msg.includes('project') || msg.includes('work') || msg.includes('portfolio')) {
-        context += "Bharath's Projects: " + JSON.stringify(MY_CONTEXT.projects) + "\n\n";
-      }
+            function sendMessage() {
+                const messageText = chatInput.value.trim();
+                if (messageText === '') return;
+                addMessageToUI(messageText, 'user');
+                chatInput.value = '';
+                
+                const context = getRelevantContext(messageText);
+                if (context === null) {
+                    addMessageToUI("Sorry, I can only answer questions about Bharath's professional work, skills, and projects.", 'bot');
+                } else {
+                    fetchBotResponse(messageText, context);
+                }
+            }
 
-      // 3. Publications
-      if (msg.includes('paper') || msg.includes('publication') || msg.includes('scholar') || msg.includes('research')) {
-        context += "Bharath's Publications: " + JSON.stringify(MY_CONTEXT.publications) + "\n\n";
-      }
+            async function fetchBotResponse(userMessage, context) {
+                const OLLAMA_CHAT_URL = NGROK_URL.replace(/\/api\/chat$/, '') + '/api/chat';
+                const systemPrompt = `You are a helpful AI assistant for Bharath Reddy's portfolio. Use ONLY this context to answer: ${context}. Keep answers professional and concise.`;
+                const messages = [{ role: "system", content: systemPrompt }, { role: "user", content: userMessage }];
+                const requestBody = { model: "tinyllama", messages: messages, stream: false };
 
-      // 4. Skills
-      if (msg.includes('skill') || msg.includes('tech') || msg.includes('software') || msg.includes('program')) {
-        context += "Bharath's Skills: " + JSON.stringify(MY_CONTEXT.skills) + "\n\n";
-      }
-
-      // 5. Experience
-      if (msg.includes('experience') || msg.includes('job') || msg.includes('history')) {
-        context += "Bharath's Experience: " + JSON.stringify(MY_CONTEXT.experience) + "\n\n";
-      }
-      
-      // 6. Education
-      if (msg.includes('education') || msg.includes('school') || msg.includes('degree') || msg.includes('college')) {
-        context += "Bharath's Education: " + JSON.stringify(MY_CONTEXT.education) + "\n\n";
-      }
-
-      // 7. Achievements
-      if (msg.includes('award') || msg.includes('achievement') || msg.includes('honor')) {
-        context += "Bharath's Achievements: " + JSON.stringify(MY_CONTEXT.achievements) + "\n\n";
-      }
-
-      // If no keywords matched, context will be empty.
-      // We return null to signal "out of context".
-      if (context === "") {
-        return null;
-      }
-      
-      return context;
-    }
-
-
-    // --- 💡 MODIFIED "sendMessage" FUNCTION 💡 ---
-    
-    function sendMessage() {
-      const messageText = chatInput.value.trim();
-      if (messageText === '') return;
-
-      addMessageToUI(messageText, 'user');
-      chatInput.value = '';
-
-      // --- GATEKEEPER CHECK ---
-      const context = getRelevantContext(messageText);
-
-      if (context === null) {
-        // 1. OUT OF CONTEXT: No keywords matched.
-        // We reply immediately without calling the AI.
-        addMessageToUI("Sorry, that question is out of context. I can only answer questions about Bharath's professional work, skills, and projects.", 'bot');
-      } else {
-        // 2. CONTEXT FOUND: Keywords matched.
-        // We pass the question AND the context to the AI.
-        fetchBotResponse(messageText, context);
-      }
-    }
-
-
-    // --- 💡 MODIFIED "fetchBotResponse" FUNCTION 💡 ---
-
-    async function fetchBotResponse(userMessage, context) {
-      const OLLAMA_CHAT_URL = NGROK_URL.replace(/\/api\/chat$/, '') + '/api/chat';
-
-      // This is the new, powerful System Prompt
-      const systemPrompt = `You are a helpful AI assistant for Bharath Reddy's personal portfolio.
-You MUST use ONLY the following context to answer the user's question.
-Do NOT use any of your own knowledge.
-If the context does not contain the answer, simply say "I do not have that specific information in my context."
-Keep your answers professional and concise.`;
-      
-      const messages = [
-        {
-          role: "system",
-          content: systemPrompt
-        },
-        {
-          role: "user",
-          // We provide the context as a "user" message
-          content: `HERE IS THE CONTEXT:\n${context}`
-        },
-        {
-          role: "user",
-          // Finally, we ask the actual question
-          content: `HERE IS THE QUESTION:\n${userMessage}`
-        }
-      ];
-
-      const requestBody = {
-        model: "tinyllama",
-        messages: messages,
-        stream: false
-      };
-
-      showTypingIndicator();
-
-      try {
-        const response = await fetch(OLLAMA_CHAT_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(requestBody)
+                showTypingIndicator();
+                try {
+                    const response = await fetch(OLLAMA_CHAT_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(requestBody)
+                    });
+                    hideTypingIndicator();
+                    if (!response.ok) throw new Error('API Error');
+                    const data = await response.json();
+                    const botReply = data.message?.content || 'Empty response.';
+                    addMessageToUI(botReply, 'bot');
+                } catch (error) {
+                    console.error(error);
+                    hideTypingIndicator();
+                    addMessageToUI("I'm having trouble connecting to the server.", 'bot');
+                }
+            }
         });
-
-        hideTypingIndicator();
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
-        const data = await response.json();
-        const botReply = data.message && data.message.content 
-                          ? data.message.content 
-                          : 'Sorry, I received an empty response.';
-        
-        addMessageToUI(botReply, 'bot');
-
-      } catch (error) {
-        console.error('Error fetching bot response:', error);
-        hideTypingIndicator();
-        addMessageToUI(`Sorry, I am having technical difficulties: ${error.message}`, 'bot');
-      }
-    }
-    
-  });
-</script>
+    </script>
 </body>
 </html>
