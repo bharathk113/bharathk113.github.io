@@ -50,14 +50,6 @@
     
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-197683058-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'UA-197683058-1');
-    </script>
-
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #334155; overflow-x: hidden; }
         
@@ -81,11 +73,16 @@
             --poster-color: transparent;
         }
 
-        /* Gradient Text */
         .text-gradient {
             background: linear-gradient(to right, #059669, #10b981);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        
+        /* Smooth image rendering for logos */
+        .skill-icon {
+            object-fit: contain;
+            transition: transform 0.3s ease;
         }
     </style>
 </head>
@@ -98,7 +95,7 @@
     <nav class="fixed w-full z-50 top-0 start-0 border-b border-white/10 bg-white/80 backdrop-blur-md transition-all duration-300 shadow-sm" id="navbar">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#intro" class="flex items-center space-x-3 rtl:space-x-reverse group">
-                <img src="/assets/img/passport-new.jpg" class="h-10 w-10 rounded-full object-cover border-2 border-primary group-hover:scale-105 transition-transform" alt="Bharath Reddy Logo">
+                <img src="assets/img/passport-new.jpg" class="h-10 w-10 rounded-full object-cover border-2 border-primary group-hover:scale-105 transition-transform" alt="Bharath Reddy Logo">
                 <span class="self-center text-xl font-bold whitespace-nowrap text-secondary group-hover:text-primary transition-colors">Bharath Reddy K</span>
             </a>
             
@@ -149,7 +146,7 @@
 
             <div class="w-full h-[400px] md:h-[500px] animate-float" data-aos="fade-left" data-aos-duration="1200">
                 <model-viewer 
-                    src="/assets/3dobjs/landscape-1.gltf" 
+                    src="assets/3dobjs/landscape-1.gltf" 
                     ar 
                     ar-modes="webxr scene-viewer quick-look" 
                     camera-controls 
@@ -195,8 +192,8 @@
                         </div>
                         
                         <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 relative overflow-hidden group-hover:border-primary/20">
-                            <div class="absolute top-0 right-0 p-4 opacity-10 grayscale group-hover:grayscale-0 transition-all">
-                                <img src="/assets/img/isro-logo-1.png" class="w-16">
+                            <div class="absolute top-4 right-4 p-2 opacity-20 grayscale group-hover:grayscale-0 transition-all">
+                                <img src="assets/img/isro-logo-1.png" class="w-16 h-16 object-contain">
                             </div>
                             <ul class="list-disc list-outside ml-4 space-y-3 text-gray-600 relative z-10">
                                 <li>Built reliable drought monitoring models used by government agencies.</li>
@@ -223,11 +220,11 @@
                             <p class="text-primary font-bold">Project Trainee</p>
                             <span class="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded">2016</span>
                         </div>
-                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300">
-                             <div class="absolute top-0 right-0 p-4 opacity-10">
-                                <img src="/assets/img/isro-logo-1.png" class="w-16">
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 relative">
+                             <div class="absolute top-4 right-4 p-2 opacity-20 grayscale group-hover:grayscale-0 transition-all">
+                                <img src="assets/img/isro-logo-1.png" class="w-16 h-16 object-contain">
                             </div>
-                            <p class="text-gray-600">Worked towards the application of object-based classification techniques for the identification of citrus orchards using Remote Sensing and GIS tools.</p>
+                            <p class="text-gray-600 relative z-10">Worked towards the application of object-based classification techniques for the identification of citrus orchards using Remote Sensing and GIS tools.</p>
                         </div>
                     </div>
                 </div>
@@ -308,7 +305,7 @@
 
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 group flex flex-col" data-aos="fade-up">
                     <div class="h-48 overflow-hidden relative">
-                        <img src="/assets/img/bhuvan-wbis.PNG" alt="WBIS" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <img src="assets/img/bhuvan-wbis.PNG" alt="WBIS" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
                             <a href="https://bhuvan-wbis.nrsc.gov.in/" target="_blank" class="px-6 py-2 bg-white text-secondary rounded-full font-bold text-sm transform hover:scale-105 transition-transform">View Live</a>
                         </div>
@@ -328,7 +325,7 @@
 
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 group flex flex-col" data-aos="fade-up">
                     <div class="h-48 overflow-hidden relative">
-                        <img src="/assets/img/hydas.png" alt="Drought" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <img src="assets/img/hydas.png" alt="Drought" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
                              <a href="https://bhuvan.nrsc.gov.in/nhp/#/webgis-drought/map" target="_blank" class="px-6 py-2 bg-white text-secondary rounded-full font-bold text-sm transform hover:scale-105 transition-transform">View Live</a>
                         </div>
@@ -347,7 +344,7 @@
 
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 group flex flex-col" data-aos="fade-up">
                     <div class="h-48 overflow-hidden relative">
-                        <img src="/assets/img/bhuvan-2d.PNG" alt="Ortho" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <img src="assets/img/bhuvan-2d.PNG" alt="Ortho" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                          <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
                              <a href="https://bhuvan.nrsc.gov.in/" target="_blank" class="px-6 py-2 bg-white text-secondary rounded-full font-bold text-sm transform hover:scale-105 transition-transform">View Live</a>
                         </div>
@@ -366,7 +363,7 @@
 
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 group flex flex-col" data-aos="fade-up">
                     <div class="h-48 overflow-hidden relative">
-                        <img src="/assets/img/twris.PNG" alt="TWRIS" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <img src="assets/img/twris.PNG" alt="TWRIS" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
                              <a href="https://bhuvan-app1.nrsc.gov.in/twris/twris.php" target="_blank" class="px-6 py-2 bg-white text-secondary rounded-full font-bold text-sm transform hover:scale-105 transition-transform">View Live</a>
                         </div>
@@ -385,7 +382,7 @@
 
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 group flex flex-col" data-aos="fade-up">
                     <div class="h-48 overflow-hidden relative">
-                        <img src="/assets/img/UAV.jpg" alt="UAV" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <img src="assets/img/UAV.jpg" alt="UAV" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
                              <a href="https://link.springer.com/article/10.1007/s12524-020-01164-x" target="_blank" class="px-6 py-2 bg-white text-secondary rounded-full font-bold text-sm transform hover:scale-105 transition-transform">Read Paper</a>
                         </div>
@@ -398,7 +395,7 @@
 
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 group flex flex-col" data-aos="fade-up">
                     <div class="h-48 overflow-hidden relative">
-                        <img src="/assets/img/accuracy-ortho.jpg" alt="Accuracy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <img src="assets/img/accuracy-ortho.jpg" alt="Accuracy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
                         <h3 class="text-xl font-bold text-secondary mb-2 group-hover:text-primary transition-colors">Accuracy Evaluator</h3>
@@ -417,8 +414,7 @@
                  <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-3xl overflow-hidden shadow-lg border-2 border-yellow-100 hover:border-yellow-300 transition-all duration-300 group" data-aos="zoom-in">
                     <div class="p-8 flex flex-col items-center text-center">
                         <div class="w-20 h-20 bg-white rounded-2xl shadow-md flex items-center justify-center mb-6 transform rotate-3 group-hover:rotate-0 transition-all">
-                            <img src="https://bharathk113.github.io/tappy-bird/tappy-bird-logo.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" class="w-16 h-16 object-contain">
-                            <i class="fa fa-gamepad text-4xl text-yellow-500 hidden"></i>
+                            <i class="fa fa-gamepad text-4xl text-yellow-500"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-gray-800 mb-2">Tappy Bird</h3>
                         <p class="text-gray-600 mb-6">A fun browser-based arcade game inspired by Flappy Bird. Features global leaderboards and Google Sign-in integration.</p>
@@ -438,42 +434,111 @@
             <div class="w-24 h-1.5 bg-primary mx-auto mb-16 rounded-full"></div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="0">
-                    <h3 class="text-lg font-bold text-primary mb-4 border-b pb-3">Languages & DB</h3>
-                    <div class="flex flex-wrap gap-2">
-                         <span class="flex items-center gap-2 px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium"><img src="/assets/img/python-logo-1-300x300.jpg" class="w-4 h-4 rounded-full">Python</span>
-                         <span class="flex items-center gap-2 px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium"><img src="/assets/img/postgresql.png" class="w-4 h-4 rounded-full">PostgreSQL</span>
-                         <span class="flex items-center gap-2 px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium"><img src="/assets/img/postgis.png" class="w-4 h-4 rounded-full">PostGIS</span>
-                         <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">Matlab</span>
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="0">
+                    <h3 class="text-lg font-bold text-primary mb-6 border-b pb-3">Languages & DB</h3>
+                    <div class="grid grid-cols-1 gap-3">
+                         <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/python-logo-1-300x300.jpg" class="w-8 h-8 skill-icon" alt="Python">
+                            <span class="font-medium text-gray-700">Python</span>
+                         </div>
+                         <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/C.png" class="w-8 h-8 skill-icon" alt="C">
+                            <span class="font-medium text-gray-700">C Language</span>
+                         </div>
+                         <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/matlab.png" class="w-8 h-8 skill-icon" alt="Matlab">
+                            <span class="font-medium text-gray-700">Matlab</span>
+                         </div>
+                         <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/postgresql.png" class="w-8 h-8 skill-icon" alt="PostgreSQL">
+                            <span class="font-medium text-gray-700">PostgreSQL</span>
+                         </div>
+                         <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/postgis.png" class="w-8 h-8 skill-icon" alt="PostGIS">
+                            <span class="font-medium text-gray-700">PostGIS</span>
+                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="100">
-                    <h3 class="text-lg font-bold text-primary mb-4 border-b pb-3">Libraries</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">NumPy</span>
-                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">OpenCV</span>
-                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">Scikit-learn</span>
-                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">Matplotlib</span>
-                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">GDAL</span>
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-lg font-bold text-primary mb-6 border-b pb-3">Libraries</h3>
+                    <div class="grid grid-cols-1 gap-3">
+                        <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/numpy-logo-1-500x500.jpg" class="w-8 h-8 skill-icon" alt="NumPy">
+                            <span class="font-medium text-gray-700">NumPy</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/opencv-logo-1-500x500.jpg" class="w-8 h-8 skill-icon" alt="OpenCV">
+                            <span class="font-medium text-gray-700">OpenCV</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/sk-learn-logo-1-500x500.jpg" class="w-8 h-8 skill-icon" alt="Scikit-learn">
+                            <span class="font-medium text-gray-700">Scikit-learn</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/matplotlib-logo-1-500x500.jpg" class="w-8 h-8 skill-icon" alt="Matplotlib">
+                            <span class="font-medium text-gray-700">Matplotlib</span>
+                        </div>
+                         <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/scipy.png" class="w-8 h-8 skill-icon" alt="SciPy">
+                            <span class="font-medium text-gray-700">SciPy</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/numba.jpg" class="w-8 h-8 skill-icon" alt="Numba">
+                            <span class="font-medium text-gray-700">Numba</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/gdal.png" class="w-8 h-8 skill-icon" alt="GDAL">
+                            <span class="font-medium text-gray-700">GDAL & OGR</span>
+                        </div>
                     </div>
                 </div>
 
-                 <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-lg font-bold text-primary mb-4 border-b pb-3">Geospatial Software</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">QGIS</span>
-                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">ArcGIS</span>
-                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">ERDAS</span>
-                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">PCI Geomatica</span>
+                 <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-lg font-bold text-primary mb-6 border-b pb-3">Geospatial Software</h3>
+                    <div class="grid grid-cols-1 gap-3">
+                        <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/qgis.png" class="w-8 h-8 skill-icon" alt="QGIS">
+                            <span class="font-medium text-gray-700">QGIS</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/arcgis.png" class="w-8 h-8 skill-icon" alt="ArcGIS">
+                            <span class="font-medium text-gray-700">ArcGIS</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/erdas.jpg" class="w-8 h-8 skill-icon" alt="ERDAS">
+                            <span class="font-medium text-gray-700">ERDAS Imagine</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/geomatica.png" class="w-8 h-8 skill-icon" alt="PCI Geomatica">
+                            <span class="font-medium text-gray-700">PCI Geomatica</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/ecognition.jpg" class="w-8 h-8 skill-icon" alt="Ecognition">
+                            <span class="font-medium text-gray-700">eCognition</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/otb.jpg" class="w-8 h-8 skill-icon" alt="OTB">
+                            <span class="font-medium text-gray-700">Orfeo Toolbox</span>
+                        </div>
                     </div>
                 </div>
 
-                 <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-lg font-bold text-primary mb-4 border-b pb-3">Others</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">LaTeX</span>
-                        <span class="px-3 py-1.5 bg-gray-50 text-gray-700 rounded-lg text-sm font-medium">Beamer</span>
+                 <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-lg font-bold text-primary mb-6 border-b pb-3">Tools & Others</h3>
+                    <div class="grid grid-cols-1 gap-3">
+                        <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/latex.png" class="w-8 h-8 skill-icon" alt="LaTeX">
+                            <span class="font-medium text-gray-700">LaTeX</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/latex.png" class="w-8 h-8 skill-icon" alt="Beamer">
+                            <span class="font-medium text-gray-700">Beamer</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                            <img src="assets/img/github.png" class="w-8 h-8 skill-icon" alt="GitHub">
+                            <span class="font-medium text-gray-700">GitHub</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -700,7 +765,6 @@
     </script>
 
     <script>
-        // Inline Context for Chatbot to include NEW projects
         const MY_CONTEXT = {
             about_me: "Passionate and results-driven Data Scientist with proven expertise in machine learning, statistical analysis, remote sensing, image processing, and geospatial data science. Adept at building scalable solutions for real-world problems in water resources and environmental monitoring. Currently Scientist/Engineer at NRSC (ISRO).",
             experience: [
