@@ -1,5 +1,5 @@
 # Personal Portfolio ⚡️
-> A clean, beautiful, responsive portfolio template for Software Developers!
+> A modern, interactive, and responsive portfolio template for Data Scientists & Engineers!
 
 > https://bharathk113.github.io
 
@@ -13,44 +13,49 @@
 ### Website Preview
 <p align="center">
   <kbd>
-    <a href="https://bharathk113.github.io" target="_blank"><img src="examples/preview.gif">
-  </a>
+    <a href="https://bharathk113.github.io" target="_blank"><img src="examples/preview.gif" alt="Website Preview"></a>
   </kbd>
 </p>
 
 :star: Star me on GitHub — it helps!
 
 ## Features 📋
-⚡️ Fully Responsive\
-⚡️ Valid HTML5 & CSS3\
-⚡️ Typing animation using `Typed.js`\
-⚡️ Easy to modify
+⚡️ **Modern UI:** Built with **Tailwind CSS** for a clean, glassmorphism-inspired look.\
+⚡️ **Interactive 3D:** Integrated **Google Model Viewer** for AR/3D content.\
+⚡️ **AI Chatbot:** Context-aware AI assistant powered by Ollama & Ngrok.\
+⚡️ **Animations:** Smooth scroll animations using **AOS** and typing effects with `Typed.js`.\
+⚡️ **Fully Responsive:** Optimized for Mobile, Tablet, and Desktop.
 
 ## Installation & Deployment 📦
 - Clone the repository and modify the content of <b>index.html</b> according to your requirement.
-- Add or remove images from `bharathk113.github.io/assets/img/` directory as per your requirement.
-- I highly recommend to use [Github Pages](https://create-react-app.dev/docs/deployment/#github-pages) to deploy the website the EASIEST WAY.
-- To deploy your website, first you need to create github repository with name `<your-github-username>.github.io`. Please don't give any other name.
-- Push the generated code to the `master` branch of this repository.
-- <b>NOTE:</b> Make sure to set `analyticsId` from your Google Analytics account inside the Google Analytics script tag, if you want to use your own Google Analytics account.
+- Add your project images and logos to the `assets/img/` directory.
+- Update `context.js` with your personal information for the AI Chatbot.
+- I highly recommend using [Github Pages](https://pages.github.com/) to deploy the website.
+- To deploy your website, create a GitHub repository named `<your-github-username>.github.io`.
+- Push the code to the `master` (or `main`) branch of this repository.
 
 ## Sections 📚
-✔️ About me\
-✔️ Experience\
-✔️ Projects \
-✔️ Skills \
+✔️ Hero Section with 3D Model\
+✔️ About Me\
+✔️ Experience (Timeline view)\
+✔️ Major Professional Projects\
+✔️ Hobby Projects\
+✔️ Skills (with Logo support)\
 ✔️ Education\
-✔️ Publications\
+✔️ Publications (Auto-fetched)\
 ✔️ Achievements\
 ✔️ Contact Info\
-✔️ Resume
+✔️ AI Assistant
 
 To view a live example, **[click here](https://bharathk113.github.io/)**
 
 ## Tools Used 🛠️
-* [<b>GitHub Pages</b>](https://create-react-app.dev/docs/deployment/#github-pages) - To host my static website (HTML, CSS, JS).
-* [<b>Materialize</b>](https://materializecss.com/) - A CSS framework to get Google's Material Design components.
-* [<b>Typed.js</b>](https://mattboldt.com/demos/typed-js/) - JavaScript Library
+* [<b>GitHub Pages</b>](https://pages.github.com/) - Hosting.
+* [<b>Tailwind CSS</b>](https://tailwindcss.com/) - Utility-first CSS framework for styling.
+* [<b>Google Model Viewer</b>](https://modelviewer.dev/) - For displaying 3D GLTF models.
+* [<b>AOS</b>](https://michalsnik.github.io/aos/) - Animate On Scroll library.
+* [<b>Typed.js</b>](https://mattboldt.com/demos/typed-js/) - Typing animation effect.
+* [<b>FontAwesome</b>](https://fontawesome.com/) - Icons.
 
 ## Contributing 💡
 #### Step 1
