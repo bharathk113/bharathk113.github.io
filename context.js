@@ -60,6 +60,10 @@ const MY_CONTEXT = {
       "name": "Automatic geometric accuracy evaluator",
       "description": "Developed an orthorectified data geometric accuracy evaluator for quick Quality Control (QC). Used Fourier phase correlation with Log-Polar Transform and template matching using normalized cross-correlation.",
       "tools": []
+    },
+    { 
+        "name": "Data Capture", 
+        "description": "A modern, offline-first web app for field Ground Truth data collection. Supports custom schemas, GPS/Polygon mapping, and Google Sheets sync." 
     }
   ],
   
